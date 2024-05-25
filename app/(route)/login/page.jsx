@@ -44,7 +44,7 @@ const Login = () => {
       const res = await signIn("credentials", {
         email,
         password,
-        callbackUrl: "/dashboard",
+        callbackUrl: `${process.env.NEXT_PUBLIC_API_URL}/dashboard`,
       });
       console.log(res, "cehck res");
       setLoading(false);
