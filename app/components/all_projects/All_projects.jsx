@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import Pagination from "../pagination/Pagination";
 import Card from "../projectCard/Card";
-import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -11,7 +10,6 @@ import {
   tittleVariants,
 } from "@/app/(services)/animation/animation";
 const All_projects = ({ projectData }) => {
-  //   const [categories, setcategories] = useState(uniqueCategory);
   const [category, setCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState("6");
@@ -69,7 +67,7 @@ const All_projects = ({ projectData }) => {
           </motion.h5>
         </div>
         <div className="flex justify-center mt-3 ">
-          <div className="flex md:border items-center  md:border-indigo-100 md:p-1 flex-wrap max-md:justify-center gap-y-4   mb-4 rounded-3xl">
+          <div className="flex md:border items-center  md:border-indigo-100 md:p-1 flex-wrap max-md:justify-center gap-y-4  gap-x-3 md:gap-x-0 mb-4 rounded-3xl">
             {uniqueCategory?.map((name, index) => {
               return (
                 <motion.label
@@ -79,16 +77,16 @@ const All_projects = ({ projectData }) => {
                   key={name}
                   sss
                   className={`${
-                    category === name ? "bg-orange text-white" : "bg-white"
-                  } border-none w-36 text-center capitalize cursor-pointer outline-none font-semibold rounded-3xl px-4 py-2 flex items-center justify-center transition-colors  max-md:gap-x-3 `}
+                    category === name ? "bg-orange  text-white" : "bg-white"
+                  }  w-36 text-center capitalize cursor-pointer outline-none font-semibold rounded-3xl px-4 py-2 flex border md:border-none items-center justify-center transition-colors  max-md:gap-x-3 `}
                   onClick={() => setCategoryAndResetPage(name)}
                 >
                   {name}
 
                   {category === name && (
-                    <span className="relative left-1  sm:left-4 flex h-3 w-3">
+                    <span className="relative left-1  sm:left-4 flex h-1.5 w-1.5 md:h-3 md:w-3">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-50 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-offwhite"></span>
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 md:h-3 md:w-3 bg-offwhite"></span>
                     </span>
                   )}
                 </motion.label>
@@ -97,16 +95,14 @@ const All_projects = ({ projectData }) => {
           </div>
         </div>
 
-        <div className="flex  justify-between items-center mb-3 mt-7 pb-3 border-b">
-          <div className="flex justify-center items-center relative mb-2 md:mb-0 max-md:w-[100px]">
+        <div className="flex justify-between items-center  mt-7 py-3 border-b">
+          <div className="flex justify-center  items-center relative  md:mb-0 ">
             <select
               onChange={(e) => setPageSize(e.target.value)}
               id="small"
               className="p-2 w-full text-center text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange dark:focus:border-blue-500 mr-4"
             >
-              <option value="6" selected>
-                Items per Page
-              </option>
+              <option selected>Per Page</option>
               <option value="3">3</option>
               <option value="6">6</option>
               <option value="9">9</option>
@@ -116,7 +112,7 @@ const All_projects = ({ projectData }) => {
           <div className="max-md:w-[150px]">
             <input
               type="search"
-              className="relative m-0 block w-full flex-auto rounded border border-solid border-neutral-200 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary"
+              className="relative m-0 block w-full flex-auto rounded border  bg-transparent bg-clip-padding px-3 py-[0.25rem] text-baseb text-black font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3]  focus:shadow-inset focus:outline-none motion-reduce:transition-none "
               placeholder="Search"
               aria-label="Search"
               value={search}

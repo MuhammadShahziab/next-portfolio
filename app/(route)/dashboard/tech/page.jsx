@@ -18,7 +18,6 @@ const TechPage = () => {
   const [formData, setFormdata] = useState(techformdata);
   const [pageLoading, setPageLoading] = useState(false);
   const [update, setUpdate] = useState(false);
-  console.log(formData, "check images 1111");
 
   const uploadImg = async (e) => {
     try {

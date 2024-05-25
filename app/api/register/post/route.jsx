@@ -1,8 +1,8 @@
 import ConnectDB from "@/app/db/Connect";
 import User from "@/app/models/User";
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
-
+// import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 export const POST = async (req) => {
   try {
     await ConnectDB();

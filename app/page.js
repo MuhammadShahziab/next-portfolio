@@ -7,18 +7,18 @@ import Hero from "./sections/hero/Hero";
 import Portfolio from "./sections/portfolio/Portfolio";
 import Services from "./sections/services/Services";
 import Technology from "./sections/technology/Technology";
-
-const extractdata = async (page) => {
-  const { data } = await axios.get(`http://localhost:3000/api/${page}/get`);
-  return data && data.data;
-};
+import { fetchPageData } from "./Fetchers";
+// const extractdata = async (page) => {
+//   const { data } = await axios.get(`http://localhost:3000/api/${page}/get`);
+//   return data && data.data;
+// };
 export default async function Home() {
-  const heroData = await extractdata("header");
-  const aboutData = await extractdata("about");
-  const contactData = await extractdata("contact");
-  const servicesData = await extractdata("services");
-  const techData = await extractdata("tech");
-  const projectsData = await extractdata("projects");
+  const heroData = await fetchPageData("header");
+  const aboutData = await fetchPageData("about");
+  const contactData = await fetchPageData("contact");
+  const servicesData = await fetchPageData("services");
+  const techData = await fetchPageData("tech");
+  const projectsData = await fetchPageData("projects");
   return (
     <main className="relative ">
       <Navbar />
