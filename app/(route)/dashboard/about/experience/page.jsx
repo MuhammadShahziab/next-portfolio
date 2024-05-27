@@ -128,20 +128,21 @@ const Aboutpage = () => {
         </div>
       ) : (
         <>
-          <div className="mb-5">
+          <div className="mb-3 md:mb-5">
             <button
               onClick={() => setShow((pre) => !pre)}
-              className="flex justify-center text-lg hover:shadow-md gap-3 py-2 px-4 rounded-md bg-green-300 text-white items-center"
+              className="flex justify-center text-base md:text-lg hover:shadow-md gap-3 py-2 px-2 md:px-4 rounded-md bg-green-300 text-white items-center"
             >
               {show ? (
                 <>
                   {" "}
-                  <CirclePlus size={24} /> Add
+                  <CirclePlus className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" />{" "}
+                  Add
                 </>
               ) : (
                 <>
                   {" "}
-                  <View size={24} /> See
+                  <View className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" /> See
                 </>
               )}
             </button>
@@ -221,12 +222,15 @@ const Aboutpage = () => {
                         }
                       />
 
-                      <span
-                        className="px-2 cursor-pointer py-1 text-xl flex justify-center items-center text-red-600 font-semibold"
-                        onClick={() => handleRemove(index)}
-                      >
-                        <Trash />
-                      </span>
+                      <div className=" flex justify-center items-center ">
+                        <span
+                          onClick={() => handleRemove(index)}
+                          className="w-10 h-10 flex  cursor-pointer text-red-600 font-semibold justify-center items-center border rounded-r-full "
+                        >
+                          {" "}
+                          <Trash />
+                        </span>
+                      </div>
                     </div>
                   );
                 })}

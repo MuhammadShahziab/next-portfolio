@@ -123,7 +123,7 @@ const TechPage = () => {
             <div>
               <label
                 htmlFor="upload"
-                className="group w-[120px] h-[120px] md:w-32 md:h-32 font-semibold text-lg gap-2 rounded-md border flex flex-col justify-center items-center hover:bg-orange hover:text-white text-green-300 hover:border-none hover:shadow-md cursor-pointer"
+                className="group w-[100px] h-[100px] md:w-32 md:h-32 font-semibold text-lg gap-2 rounded-md border flex flex-col justify-center items-center hover:bg-orange hover:text-white text-green-300 hover:border-none hover:shadow-md cursor-pointer"
               >
                 Upload{" "}
                 <ImageUp size={25} className="group-hover:animate-bounce" />
@@ -143,14 +143,13 @@ const TechPage = () => {
               formData.data.map((item, index) => (
                 <div
                   key={item._id} // Use _id as the key
-                  className="relative w-[130px] flex justify-center items-center group h-[130px] md:w-[150px] md:h-[150px] rounded-md p-2 border"
+                  className="w-[100px] h-[100px] md:w-[120px] md:h-[120px] relative rounded-md p-2 group border"
                 >
                   <Image
                     src={item.url}
-                    width={150}
-                    height={150}
                     alt="Tech_Image"
-                    className="rounded-md object-contain"
+                    layout="fill"
+                    objectFit="contain"
                   />
                   <div className="absolute top-0 z-10 flex justify-center items-center bottom-0 right-0 left-0 gap-x-3">
                     <button
@@ -177,8 +176,8 @@ const TechPage = () => {
             <div
               className={`${
                 imageLoading
-                  ? " w-[120px] h-[120px] md:w-[150px] md:h-[150px] bg-gray-100 rounded-md animate-pulse"
-                  : "w-[120px] h-[120px]"
+                  ? "w-[100px] h-[100px] md:w-[120px] md:h-[120px] bg-gray-100 rounded-md animate-pulse"
+                  : "w-[100px] h-[100px] md:w-[120px] md:h-[120px]"
               }`}
             ></div>
           </div>

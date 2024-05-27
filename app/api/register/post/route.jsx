@@ -1,13 +1,13 @@
 import ConnectDB from "@/app/db/Connect";
 import User from "@/app/models/User";
 import { NextResponse } from "next/server";
-// import bcrypt from "bcrypt";
+
 import bcrypt from "bcryptjs";
 export const POST = async (req) => {
   try {
     await ConnectDB();
     const { formData } = await req.json();
-    const { email, password, username } = formData;
+    const { email, password } = formData;
     // Check if password is empty or less than 5 characters
     if (!password || password.length < 5) {
       return NextResponse.json({
@@ -30,7 +30,6 @@ export const POST = async (req) => {
     const user = await User.create({
       email,
       password: hashedPassword,
-      username,
     });
 
     if (user) {

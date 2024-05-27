@@ -16,9 +16,9 @@ export function middleware(request) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // if (!authToken && reisterPth) {
-  //   return NextResponse.redirect(new URL("/", request.url));
-  // }
+  if (!authToken && reisterPth) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 
   if (loginUserNotAccessPath) {
     if (authToken) {

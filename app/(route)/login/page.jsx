@@ -1,64 +1,61 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 
 import { HashLoader } from "react-spinners";
 import toast, { Toaster } from "react-hot-toast";
+import { Eye, EyeOff } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-const loginData = {
-  email: "",
-  passward: "",
-};
-const controls = [
-  {
-    label: "Email",
-    type: "text",
-    placeholder: "Msworld@gmail.com",
-    name: "email",
-  },
-  {
-    label: "Password",
-    type: "password",
-    placeholder: "Password",
-    name: "password",
-  },
-];
 const Login = () => {
-  const [formData, setFormData] = useState(loginData);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const router = useRouter();
   const { data, session, status } = useSession();
-  console.log(formData);
-  const handleChange = (name, value) => {
-    setFormData((pre) => ({
-      ...pre,
-      [name]: value,
-    }));
-  };
 
+  console.log(session, status);
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = formData;
+
     try {
       setLoading(true);
       const res = await signIn("credentials", {
         email,
         password,
         callbackUrl: `${process.env.NEXT_PUBLIC_API_URL}/dashboard`,
+        redirect: false,
       });
-      console.log(res, "cehck res");
-      setLoading(false);
-      toast.success("Login Success");
+
+      if (res.error) {
+        setError(res.error); // Set the error state
+        toast.error(res.error); // Display error message with toast
+        setLoading(false);
+      } else {
+        toast.success("Login Success");
+        setLoading(false);
+        setError(null);
+      }
     } catch (error) {
-      console.log(error);
+      setError("Failed to login"); // Set a generic error message
+      toast.error("Failed to login"); // Display generic error message with toast
+      setLoading(false);
     }
   };
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push(`${process.env.NEXT_PUBLIC_API_URL}/dashboard`);
+    }
+  }, [status, router]);
 
   return (
     <section className="min-h-screen ">
-      <div className=" md:grid grid-cols-3">
-        <div className="hidden md:flex col-span-2  items-center   bg-white">
-          <div className=" padding-l padding-r    flex justify-center items-center ">
+      <div className=" md:grid grid-cols-3 ">
+        <div className=" md:flex col-span-2  items-center   ">
+          <div className=" padding-l padding-r   hidden md:flex justify-center items-center ">
             <Image
               src="/assets/login/login2.jpeg"
               width={450}
@@ -68,9 +65,12 @@ const Login = () => {
             ></Image>
           </div>
         </div>
-        <div className="md:bg-orange flex justify-center items-center w-full h-screen md:relative">
-          <div className="bg-white w-[300px] sm:w-[400px] 2xl:top-48  flex flex-col  h-[500px]   px-6   rounded-sm  shadow-xl md:absolute -left-24 2xl:-left-32">
-            <h1 className=" text-3xl mb-0 leading-7 max-md:flex-col font-bold mt-6 text-orange ">
+        <div className="bg-orange flex flex-col md:justify-center  items-center   w-full h-screen md:relative">
+          <h1 className="font-semibold flex justify-center   md:hidden  text-white text-2xl text-center mt-20">
+            <span className="text-[40px]">P</span>ortfolio
+          </h1>
+          <div className=" w-[300px] sm:w-[400px]  2xl:top-48 bg-white mt-20 md:mt-0 flex flex-col  h-[500px]   px-6   rounded-md  shadow-xl md:absolute -left-24 2xl:-left-32">
+            <h1 className=" text-3xl mb-0 leading-7 max-md:flex-col   font-bold mt-8 text-orange ">
               Login <br />{" "}
               <span className="text-sm text-gray-400 ">
                 (Only Admin can Login this Dashboard)
@@ -80,29 +80,43 @@ const Login = () => {
               onSubmit={handleFormSubmit}
               className=" w-full mt-12 flex flex-col   gap-4 items-center "
             >
-              {controls?.map((item, index) => {
-                return (
-                  <>
-                    <div className="    w-full" key={index}>
-                      <label className=" text-gray-400">{item.label}</label>
-                      <input
-                        type={item.type}
-                        className="bg-gray-100 w-full h-11 outline-none mt-2 focus:border  border-none px-3"
-                        name={item.name}
-                        placeholder={item.placeholder}
-                        value={formData[item.name]}
-                        onChange={(e) =>
-                          handleChange(item.name, e.target.value)
-                        }
-                      />
-                    </div>
-                  </>
-                );
-              })}
-
+              <div className="   relative  w-full">
+                <label className="inputLabel">Email</label>
+                <input
+                  type="email"
+                  className=""
+                  name="email"
+                  placeholder="Msworld@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="   relative  w-full">
+                <label className="inputLabel">Password</label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className=""
+                  name="password"
+                  placeholder="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-6 md:top-5 top-3 cursor-pointer   text-softtext"
+                >
+                  {showPassword ? <Eye /> : <EyeOff />}
+                  {/*  */}
+                </span>
+              </div>
+              {error && (
+                <span className="bg-red-200 text-center text-red-500 rounded-md w-full mt-4">
+                  {error}
+                </span>
+              )}
               <button
                 type="submit"
-                className=" flex items-center gap-x-5 px-11 py-2 w-full mt-4 rounded-lg shadow-lg text-white font-semibold justify-center bg-orange"
+                className=" flex items-center gap-x-5 px-11 py-2 w-full mt-7 rounded-lg shadow-lg text-white font-semibold justify-center bg-orange"
               >
                 {loading ? <HashLoader color="#ffffff" size={25} /> : "Login"}
               </button>

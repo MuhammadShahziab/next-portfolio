@@ -13,20 +13,25 @@ const handler = NextAuth({
       async authorize(credentials) {
         try {
           await ConnectDB();
-          const user = await User.findOne({ email: credentials.email });
 
-          if (
-            user &&
-            (await bcrypt.compare(credentials.password, user.password))
-          ) {
-            return {
-              email: user.email,
-              username: user.username,
-            };
+          const user = await User.findOne({ email: credentials.email });
+          if (!user) {
+            throw new Error("User dost not exist! ");
           }
-          return null;
+
+          const isValid = await bcrypt.compare(
+            credentials.password,
+            user.password
+          );
+
+          if (!isValid) {
+            throw new Error("Password does not match!");
+          }
+          return {
+            email: user.email,
+          };
         } catch (err) {
-          throw new Error("credentials error");
+          throw new Error(err.message || "Internal server error");
         }
       },
     }),

@@ -37,7 +37,7 @@ const ServicesPage = () => {
   const [imageLoading, setImageLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
-  console.log(data, "cehck servivece data");
+
   const handleAddMore = () => {
     setFormdata((pre) => ({
       ...pre,
@@ -102,6 +102,7 @@ const ServicesPage = () => {
     setFormdata((pre) => {
       const newData = [...pre.data];
       newData.splice(index, 1);
+
       return { ...pre, data: newData };
     });
   };

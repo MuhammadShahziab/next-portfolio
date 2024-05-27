@@ -13,6 +13,7 @@ import {
   tagVariants,
   tittleVariants,
 } from "@/app/(services)/animation/animation";
+import Link from "next/link";
 
 const Hero = ({ heroData }) => {
   const { name, animatedText, description, subHeading, image, cv } =
@@ -83,8 +84,8 @@ const Hero = ({ heroData }) => {
             />
             {cv && <Button label="Download Cv" icon={<IoDownloadOutline />} />}
           </motion.div>
-          <div className=" mt-5 sm:mt-8">
-            <Social_icons></Social_icons>
+          <div className=" md:flex hidden mt-5 sm:mt-8">
+            <Social_icons color="black"></Social_icons>
           </div>
         </div>
         <div className="  2xl:w-full flex justify-center items-center">
@@ -92,16 +93,18 @@ const Hero = ({ heroData }) => {
             initial="offscreen"
             whileInView={"onscreen"}
             variants={imageVariant}
-            className=" flex justify-center w-[230px] h-[230px] lg:w-[300px] lg:h-[300px] 2xl:w-[380px] 2xl:h-[380px] items-center  flex-wrap"
+            className=" flex relative justify-center w-[220px] h-[220px] lg:w-[300px] lg:h-[300px] 2xl:w-[380px]  2xl:h-[380px] items-center  flex-wrap"
           >
-            <Image
-              src={image}
-              width={300}
-              height={300}
-              className="border max-md:h-[200px] max-md:w-[200px] animate_image"
-              alt="banner"
-              layout="responsive"
-            />
+            <Link href={`${process.env.NEXT_PUBLIC_API_URL}/dashboard`}>
+              {" "}
+              <Image
+                src={image}
+                className="border  animate_image"
+                alt="banner"
+                layout="fill"
+                objectFit="contain"
+              />
+            </Link>
           </motion.div>
         </div>
       </div>

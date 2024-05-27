@@ -19,13 +19,15 @@ const DeleteCard = ({
   const deleteProject = async () => {
     setDeleteLoading(true);
     try {
-      const check = await deleteData(routeName, deleteId);
+      const response = await deleteData(routeName, deleteId);
+      if (response.success) {
+        setDeletedName(null);
+        setDeleteLoading(false);
+      }
+    } catch (error) {
       setDeletedName(null);
       setDeleteLoading(false);
-      if (extractAllData) {
-        extractAllData();
-      }
-    } catch (error) {}
+    }
   };
 
   return (

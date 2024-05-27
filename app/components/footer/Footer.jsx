@@ -9,6 +9,7 @@ import {
 } from "@/app/(services)/animation/animation";
 import { Socialicons } from "@/app/constants";
 import Link from "next/link";
+import Social_icons from "../socialIcons/Social_icons";
 
 const Footer = () => {
   return (
@@ -26,19 +27,7 @@ const Footer = () => {
       </div>
       <div className="bg-black flex flex-col justify-center items-center gap-y-4 py-10 text-center ">
         <div className="flex gap-x-4 items-center  max-w-[400px]">
-          {Socialicons?.map((icon, index) => (
-            <motion.div
-              initial="offscreen"
-              whileInView={"onscreen"}
-              variants={containerVariantsView((index + 1) * 0.1)}
-              key={index}
-            >
-              {" "}
-              <Link className="text-white hover:text-orange" href={icon.path}>
-                {icon.icon}
-              </Link>
-            </motion.div>
-          ))}
+          <Social_icons color="white"></Social_icons>
 
           {/* {Socialicons?.map((icon, index) => (
             <span key={index}>{icon}</span>

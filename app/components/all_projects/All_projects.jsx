@@ -75,10 +75,9 @@ const All_projects = ({ projectData }) => {
                   animate={"animate"}
                   variants={containerVariants((index + 1) * 0.1)}
                   key={name}
-                  sss
                   className={`${
                     category === name ? "bg-orange  text-white" : "bg-white"
-                  }  w-36 text-center capitalize cursor-pointer outline-none font-semibold rounded-3xl px-4 py-2 flex border md:border-none items-center justify-center transition-colors  max-md:gap-x-3 `}
+                  } w-32 md:w-36 text-center capitalize cursor-pointer outline-none font-semibold rounded-3xl px-3 md:px-4 py-2 flex border md:border-none items-center text-sm md:text-base justify-center transition-colors  max-md:gap-x-3 `}
                   onClick={() => setCategoryAndResetPage(name)}
                 >
                   {name}
@@ -102,7 +101,9 @@ const All_projects = ({ projectData }) => {
               id="small"
               className="p-2 w-full text-center text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange dark:focus:border-blue-500 mr-4"
             >
-              <option selected>Per Page</option>
+              <option value="6" selected>
+                Per Page
+              </option>
               <option value="3">3</option>
               <option value="6">6</option>
               <option value="9">9</option>

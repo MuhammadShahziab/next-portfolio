@@ -186,7 +186,7 @@ const Page = ({ params }) => {
               />
             </div>
 
-            <div className="md:grid md:grid-cols-2 max-md:mt-6  gap-4">
+            <div className="md:grid md:grid-cols-2 mt-3 md:mt-0  gap-4">
               {formData?.data?.map((item, index) => {
                 return (
                   <div key={index} className="flex max-md:mb-3 gap-2">
@@ -209,19 +209,19 @@ const Page = ({ params }) => {
               })}
             </div>
 
-            <div className=" w-full flex justify-center md:justify-end items-center mt-4">
+            <div className=" w-full flex justify-center  md:justify-end items-center mt-4">
               <button
                 onClick={handleAddMore}
-                className="px-6 py-2  mt-4 flex gap-1 justify-center items-center bg-green-300 font-semibold rounded-md text-white"
+                className="px-6 py-2   flex gap-1 justify-center items-center bg-green-300 font-semibold rounded-md text-white"
               >
                 <CirclePlus size={20} /> Add point
               </button>
             </div>
-            <div className="flex gap-3">
+            <div className="flex  items-center gap-3 mt-5 md:mt-0">
               <div>
                 <label
                   htmlFor="upload"
-                  className="group w-[120px] h-[120px] md:w-32 md:h-32 font-semibold text-lg gap-2 rounded-md border flex flex-col justify-center items-center hover:bg-orange hover:text-white text-green-300 hover:border-none hover:shadow-md cursor-pointer"
+                  className="group w-[100px] h-[100px] md:w-32 md:h-32 font-semibold text-lg gap-2 rounded-md border flex flex-col justify-center items-center hover:bg-orange hover:text-white text-green-300 hover:border-none hover:shadow-md cursor-pointer"
                 >
                   Upload{" "}
                   <ImageUp size={25} className="group-hover:animate-bounce" />
@@ -235,17 +235,16 @@ const Page = ({ params }) => {
                 />
               </div>
               {imageLoading ? (
-                <div className="border w-[120px] h-[120px] bg-slate-100 animate-pulse rounded-md"></div>
+                <div className="border w-[100px] h-[100px] bg-slate-100 animate-pulse rounded-md"></div>
               ) : (
                 <>
                   {formData?.image ? (
-                    <div className="border flex justify-center items-center rounded-md p-1">
+                    <div className="border w-[100px] h-[80px] md:w-[120px] md:h-[100px] relative flex justify-center items-center rounded-md p-1">
                       <Image
                         src={formData?.image}
-                        width={100}
-                        height={100}
+                        layout="fill"
+                        objectFit="contain"
                         alt="service image"
-                        className="object-contain "
                       />
                     </div>
                   ) : null}

@@ -68,6 +68,7 @@ const CategoryList = ({ open, setOpen }) => {
               >
                 {item?.submenu?.map((subitem, subindex) => (
                   <Link
+                    onClick={handlecloseSidebar}
                     className={` ${
                       fullPath === subitem.href
                         ? " bg-sky-200 text-white"

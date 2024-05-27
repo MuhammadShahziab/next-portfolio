@@ -19,7 +19,7 @@ input[type="email"],
 input[type="password"],
 input[type="text"],
 textarea {
-  @apply outline-none border  focus:bg-transparent rounded-md py-4 px-3 w-full;
+  @apply outline-none border  focus:bg-transparent rounded-md py-3 md:py-4 px-3 w-full;
 }
 
 .input_div {

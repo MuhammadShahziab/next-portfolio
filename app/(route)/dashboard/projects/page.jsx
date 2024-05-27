@@ -156,17 +156,19 @@ const Projectpage = () => {
         <>
           <button
             onClick={() => setShow((pre) => !pre)}
-            className="flex justify-center text-lg hover:shadow-md gap-3 py-2 px-4 rounded-md bg-green-300 text-white items-center"
+            className="flex justify-center text-base md:text-lg hover:shadow-md gap-2 md:gap-3 py-2 px-2 md:px-4 rounded-md bg-green-300 text-white items-center"
           >
             {!show ? (
               <>
                 {" "}
-                <CirclePlus size={24} /> Create
+                <CirclePlus className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" />{" "}
+                Create
               </>
             ) : (
               <>
                 {" "}
-                <View size={24} /> See All
+                <View className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" /> See
+                All
               </>
             )}
           </button>
@@ -209,17 +211,15 @@ const Projectpage = () => {
                       " "
                     )}
 
-                    <div className="flex  justify-between items-center mb-3 mt-7 pb-3 border-b">
-                      <div className="flex justify-center items-center relative mb-2 md:mb-0 max-md:w-[100px]">
+                    <div className="flex justify-between items-center  mt-7 py-3 border-b">
+                      <div className="flex justify-center  items-center relative  md:mb-0 ">
                         <select
-                          onChange={(e) => {
-                            handlePageSize(e.target.value);
-                          }}
+                          onChange={(e) => setPageSize(e.target.value)}
                           id="small"
-                          className="px-2 py-1.5 w-full text-center text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange dark:focus:border-blue-500 mr-4"
+                          className="p-2 w-full text-center text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange dark:focus:border-blue-500 mr-4"
                         >
                           <option value="6" selected>
-                            Items per Page
+                            Per Page
                           </option>
                           <option value="3">3</option>
                           <option value="6">6</option>
@@ -230,7 +230,7 @@ const Projectpage = () => {
                       <div className="max-md:w-[150px]">
                         <input
                           type="search"
-                          className="relative m-0 block w-full flex-auto rounded border border-solid border-neutral-200 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary"
+                          className="relative m-0 block w-full flex-auto rounded border  bg-transparent bg-clip-padding px-3 py-[0.25rem] text-baseb text-black font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3]  focus:shadow-inset focus:outline-none motion-reduce:transition-none "
                           placeholder="Search"
                           aria-label="Search"
                           value={search}
@@ -244,13 +244,19 @@ const Projectpage = () => {
                     <table className="w-full">
                       <thead>
                         <tr>
-                          <th className="border px-4 py-2 text-black">#No</th>
-                          <th className="border px-4 py-2 text-black">Name</th>
-                          <th className="border px-4 py-2 text-black hidden md:block">
+                          <th className="border text-sm md:text-md px-2 md:px-4 py-2 text-black">
+                            #No
+                          </th>
+                          <th className="border px-2 md:px-4 text-sm md:text-md py-2 text-black">
+                            Name
+                          </th>
+                          <th className="border px-2 md:px-4 text-sm md:text-md py-2 text-black hidden md:block">
                             Category
                           </th>
-                          <th className="border px-4 py-2 text-black">Image</th>
-                          <th className="border px-4 py-2 text-black">
+                          <th className="border text-sm md:text-md px-2 md:px-4 py-2 text-black">
+                            Image
+                          </th>
+                          <th className="border text-sm md:text-md px-2 md:px-4 py-2 text-black">
                             Actions
                           </th>
                         </tr>
@@ -260,16 +266,16 @@ const Projectpage = () => {
                           currentData?.map((project, index) => (
                             <>
                               <tr key={index} className="bg-gray-50">
-                                <td className="border md:px-4 px-2 md:py-2 py-1 text-center">
+                                <td className="border md:px-4 px-2 md:py-2 py-1 text-sm md:text-md text-center">
                                   {(currentPage - 1) * pageSize + index + 1}
                                 </td>
-                                <td className="border md:px-4 px-2 md:py-2 py-1 text-center">
+                                <td className="border md:px-4 px-2 md:py-2 py-1 text-sm md:text-md  text-center">
                                   {project.name}
                                 </td>
-                                <td className="border max-md:hidden  md:px-4 px-2 md:py-2 py-1 text-center ">
+                                <td className="border max-md:hidden  md:px-4 px-2 text-sm md:text-md md:py-2 py-1 text-center ">
                                   {project.category}
                                 </td>
-                                <td className="border md:px-4 px-2 py-1 md:py-2 flex justify-center items-center">
+                                <td className="border md:px-4 px-2 py-1 md:py-2 text-sm md:text-md flex justify-center items-center">
                                   <Image
                                     src={project.image}
                                     width={100}
@@ -278,21 +284,21 @@ const Projectpage = () => {
                                   ></Image>
                                 </td>
                                 <td className="border md:px-4 px-2 md:py-2 py-1 mx-auto  ">
-                                  <div className="flex justify-center">
+                                  <div className="flex justify-center items-center">
                                     <Link
-                                      href={`/dashboard/projects/edit/${project._id}`}
+                                      href={`${process.env.NEXT_PUBLIC_API_URL}/dashboard/projects/edit/${project._id}`}
                                     >
-                                      <button className="mr-2 bg-blue-200 rounded-full w-8 h-8 flex justify-center items-center text-blue-500">
-                                        <Pencil size={20} />
+                                      <button className="mr-2 bg-blue-200 rounded-full flex justify-center items-center text-blue-500 w-6 h-6 md:w-8 md:h-8 ">
+                                        <Pencil className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 " />
                                       </button>
                                     </Link>
                                     <button
                                       onClick={() =>
                                         confirmDelete(project._id, project.name)
                                       }
-                                      className="mr-2 bg-red-200 rounded-full w-8 h-8 flex justify-center items-center text-red-500"
+                                      className="mr-2 bg-red-200 rounded-full flex justify-center items-center text-red-500 w-6 h-6 md:w-8 md:h-8 "
                                     >
-                                      <Trash size={20} />
+                                      <Trash className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 " />
                                     </button>
                                   </div>
                                 </td>

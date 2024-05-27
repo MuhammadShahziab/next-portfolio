@@ -6,38 +6,14 @@ import { toast, Toaster } from "react-hot-toast";
 import { HashLoader } from "react-spinners";
 import { addData } from "@/app/(services)/services";
 import { useRouter } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
 
-const registerFormData = {
-  username: "",
-  email: "",
-  password: "",
-};
-
-const controls = [
-  {
-    label: "Name",
-    type: "text",
-    placeholder: "Name",
-    name: "username",
-  },
-  {
-    label: "Email",
-    type: "text",
-    placeholder: "Msworld@gmail.com",
-    name: "email",
-  },
-  {
-    label: "Password",
-    type: "password",
-    placeholder: "Password",
-    name: "password",
-  },
-];
 const Register = () => {
   const [error, setError] = useState(false);
-  const [formData, setFormData] = useState(registerFormData);
   const [loading, setLoading] = useState(false);
-  console.log(formData, "check register data ");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const session = useSession();
   console.log(session, "session");
 
@@ -52,10 +28,10 @@ const Register = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const { username, email, password } = formData;
+    const formData = { email, password };
     try {
       setLoading(true);
-      if (!username || !email || !password) {
+      if (!email || !password) {
         setError("please Fill all Fields!");
         return;
       }
@@ -65,7 +41,6 @@ const Register = () => {
       if (!response.success) {
         setError(response.message);
       } else {
-        setFormData(registerFormData);
         router.push("/login");
         setError("");
       }
@@ -90,8 +65,11 @@ const Register = () => {
             ></Image>
           </div>
         </div>
-        <div className="md:bg-orange flex justify-center items-center w-full h-screen md:relative">
-          <div className="bg-white w-[300px] sm:w-[400px] 2xl:top-48  flex flex-col  h-[500px]   px-6   rounded-sm  shadow-xl md:absolute -left-24 2xl:-left-32">
+        <div className="bg-orange flex flex-col md:justify-center  items-center   w-full h-screen md:relative">
+          <h1 className="font-semibold flex justify-center   md:hidden  text-white text-2xl text-center mt-20">
+            <span className="text-[40px]">P</span>ortfolio
+          </h1>
+          <div className="bg-white mt-20 md:mt-0 rounded-md w-[300px] sm:w-[400px] 2xl:top-48  flex flex-col  h-[500px]   px-6     shadow-xl md:absolute -left-24 2xl:-left-32">
             <h1 className=" text-3xl mb-0 leading-7 max-md:flex-col font-bold mt-6 text-orange ">
               Register <br />{" "}
               <span className="text-sm text-gray-400 ">
@@ -99,30 +77,38 @@ const Register = () => {
               </span>
             </h1>
 
-            <div className=" w-full mt-7 flex flex-col   gap-4 items-center ">
-              {controls?.map((item, index) => {
-                return (
-                  <>
-                    <div className="    w-full" key={index}>
-                      <label className=" text-gray-400 font-semibold ">
-                        {item.label}
-                      </label>
-                      <input
-                        type={item.type}
-                        className="bg-gray-100 w-full h-11 outline-none mt-1 focus:border px-3"
-                        name={item.name}
-                        placeholder={item.placeholder}
-                        value={formData[item.name]}
-                        onChange={(e) =>
-                          handleChange(item.name, e.target.value)
-                        }
-                      />
-                    </div>
-                  </>
-                );
-              })}
+            <div className=" w-full mt-12 flex flex-col   gap-4 items-center ">
+              <div className="   relative  w-full">
+                <label className="inputLabel">Email</label>
+                <input
+                  type="email"
+                  className=""
+                  name="email"
+                  placeholder="Msworld@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="   relative  w-full">
+                <label className="inputLabel">Password</label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className=""
+                  name="password"
+                  placeholder="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-6 md:top-5 top-3 cursor-pointer   text-softtext"
+                >
+                  {showPassword ? <Eye /> : <EyeOff />}
+                  {/*  */}
+                </span>
+              </div>
 
-              <span className="bg-red-400  text-center text-white rounded-md w-full  mt-4">
+              <span className="bg-red-200  text-center text-red-500 rounded-md w-full  mt-4">
                 {error && error}
               </span>
               <button

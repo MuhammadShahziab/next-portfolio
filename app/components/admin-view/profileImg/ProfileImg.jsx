@@ -56,7 +56,10 @@ const ProfileImg = () => {
         </Link>
         <Link
           href={""}
-          onClick={signOut}
+          onClick={(e) => {
+            e.preventDefault();
+            signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_API_URL}/` });
+          }}
           className=" w-full  hover:bg-slate-50 py-1 text-center "
         >
           Sign out

@@ -73,58 +73,19 @@ const FormControls = ({ formDataa, controls, setFormData, categories }) => {
       [name]: "",
     }));
   };
-
-  //   try {
-  //     const file = e.target.files[0];
-  //     if (!file) {
-  //       toast.error("No file selected");
-  //     }
-
-  //     setLoading(true);
-  //     const formData = new FormData();
-  //     formData.append("file", file);
-  //     formData.append("upload_preset", "msportfolio");
-
-  //     const uploadResponse = await fetch(
-  //       "https://api.cloudinary.com/v1_1/msworlddev/image/upload",
-  //       {
-  //         method: "POST",
-  //         body: formData,
-  //       }
-  //     );
-  //     if (!uploadResponse.ok) {
-  //       toast.error("Failed to upload image");
-  //     }
-
-  //     const uploadedImageData = await uploadResponse.json();
-  //     const imgUrl = uploadedImageData.secure_url;
-
-  //     setLoading(false);
-
-  //     setCvImage(imgUrl);
-  //     setFormData({
-  //       ...formDataa,
-  //       cv: imgUrl,
-  //     });
-  //     toast.success("Image Selected");
-  //   } catch (error) {
-  //     setLoading(false);
-  //     toast.error("Failed catch");
-  //   }
-  // };
   return (
-    <div className="grid lg:grid-cols-2 w-full gap-6 mx-auto">
+    <div className="grid lg:grid-cols-2 w-full   md:gap-6 gap-2 mx-auto">
       {controls.map((controlItem, index) => (
-        <div className="mb-4 md:mb-0 " key={index}>
+        <div className="mb-4  md:mb-0 " key={index}>
           {controlItem.type === "file" ? (
-            <div className="   gap-8 flex items-center w-full  ">
+            <div className="     md:gap-8 gap-5 flex items-center w-full  ">
               {" "}
               <div>
                 <label
                   htmlFor={controlItem.name}
-                  className=" group w-[120px] h-[100px]  md:w-28 md:h-28  font-semibold text-md md:text-lg gap-2 rounded-md border flex flex-col justify-center items-center text-center hover:bg-orange hover:text-white text-green-300 hover:border-none hover:shadow-md cursor-pointer"
+                  className=" group w-[100px] h-[100px]  md:w-28 md:h-28  font-semibold text-sm md:text-lg gap-2 rounded-md border flex flex-col justify-center items-center text-center hover:bg-orange hover:text-white text-green-300 hover:border-none hover:shadow-md cursor-pointer"
                 >
-                  Upload {controlItem.name}
+                  Upload <br /> {controlItem.name}
                   <ImageUp size={25} className="group-hover:animate-bounce" />
                 </label>
 
@@ -142,15 +103,15 @@ const FormControls = ({ formDataa, controls, setFormData, categories }) => {
               <div
                 className={`${
                   imageloading && controlItem.name === "image"
-                    ? "w-[120px] h-[100px] bg-gray-100 rounded-md animate-pulse"
-                    : "w-[120px] h-[100px] hidden md:w-[150px] md:h-[150px]"
+                    ? "w-[100px] h-[100px] bg-gray-100 rounded-md animate-pulse"
+                    : "w-[100px] h-[100px] hidden md:w-[150px] md:h-[150px]"
                 }`}
               ></div>
               <div
                 className={`${
                   cvLoading && controlItem.name === "cv"
-                    ? "w-[120px] h-[100px] bg-gray-100 rounded-md animate-pulse"
-                    : "w-[120px] h-[100px] hidden md:w-[150px] md:h-[150px]"
+                    ? "w-[100px] h-[100px] bg-gray-100 rounded-md animate-pulse"
+                    : "w-[100px] h-[100px] hidden md:w-[150px] md:h-[150px]"
                 }`}
               ></div>
               {controlItem.name === "image" && formDataa.image ? (
@@ -159,13 +120,13 @@ const FormControls = ({ formDataa, controls, setFormData, categories }) => {
                     imageloading && "hidden"
                   } flex gap-3 items-center  `}
                 >
-                  <div className="w-[120px] h-[100px] relative">
+                  <div className="w-[100px] h-[80px] md:w-[120px] md:h-[100px] relative">
                     <Image
                       src={formDataa?.image}
                       layout="fill"
                       objectFit="contain"
-                      alt="CV"
-                      className=" border   rounded-md "
+                      alt="hero_image"
+                      className="border rounded-md"
                     />
                   </div>
                   <button
@@ -181,7 +142,7 @@ const FormControls = ({ formDataa, controls, setFormData, categories }) => {
                     cvLoading && "hidden"
                   } flex gap-3 items-center  w-full`}
                 >
-                  <div className="w-[120px] h-[100px] relative">
+                  <div className=" w-[100px] h-[80px] md:w-[120px] md:h-[100px] relative">
                     <Image
                       src={formDataa?.cv}
                       layout="fill"
@@ -201,7 +162,9 @@ const FormControls = ({ formDataa, controls, setFormData, categories }) => {
             </div>
           ) : controlItem.lable === "Category" ? (
             <div className="input_div">
-              <label className="input_label">{controlItem?.lable}</label>
+              <label className="text-sm md:text-base">
+                {controlItem?.lable}
+              </label>
               <select
                 onChange={(e) =>
                   setFormData({
@@ -225,7 +188,9 @@ const FormControls = ({ formDataa, controls, setFormData, categories }) => {
             </div>
           ) : (
             <div className="input_div">
-              <label className="input_lable">{controlItem?.lable}</label>
+              <label className="text-sm md:text-base">
+                {controlItem?.lable}
+              </label>
               <input
                 required
                 type={controlItem?.type}
