@@ -8,9 +8,12 @@ const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
-      id: "credentials",
       name: "Credentials",
       async authorize(credentials) {
+        if (!credentials.email || !credentials.password) {
+          throw new Error("Please enter your email and password");
+        }
+
         try {
           await ConnectDB();
 
@@ -27,9 +30,7 @@ const handler = NextAuth({
           if (!isValid) {
             throw new Error("Password does not match!");
           }
-          return {
-            email: user.email,
-          };
+          return user;
         } catch (err) {
           throw new Error(err.message || "Internal server error");
         }

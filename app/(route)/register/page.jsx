@@ -15,14 +15,6 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const session = useSession();
-  console.log(session, "session");
-
-  const handleChange = (name, value) => {
-    setFormData((pre) => ({
-      ...pre,
-      [name]: value,
-    }));
-  };
 
   const router = useRouter();
 
@@ -66,10 +58,10 @@ const Register = () => {
           </div>
         </div>
         <div className="bg-orange flex flex-col md:justify-center  items-center   w-full h-screen md:relative">
-          <h1 className="font-semibold flex justify-center   md:hidden  text-white text-2xl text-center mt-20">
+          <h1 className="font-semibold flex justify-center   md:hidden  text-white text-2xl text-center mt-11">
             <span className="text-[40px]">P</span>ortfolio
           </h1>
-          <div className="bg-white mt-20 md:mt-0 rounded-md w-[300px] sm:w-[400px] 2xl:top-48  flex flex-col  h-[500px]   px-6     shadow-xl md:absolute -left-24 2xl:-left-32">
+          <div className="bg-white mt-11 md:mt-0 rounded-md w-[300px] sm:w-[400px] 2xl:top-48  flex flex-col  h-[500px]   px-6     shadow-xl md:absolute -left-24 2xl:-left-32">
             <h1 className=" text-3xl mb-0 leading-7 max-md:flex-col font-bold mt-6 text-orange ">
               Register <br />{" "}
               <span className="text-sm text-gray-400 ">

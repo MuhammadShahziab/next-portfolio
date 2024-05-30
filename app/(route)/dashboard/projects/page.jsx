@@ -185,7 +185,10 @@ const Projectpage = () => {
                 <span className="text-red-500 font-semibold mt-4 text-center block">
                   {error}
                 </span>
-                <Button saveData={saveData} loading={loading} />{" "}
+                <div className="mt-8 ">
+                  {" "}
+                  <Button saveData={saveData} loading={loading} />
+                </div>
               </div>
             ) : (
               <>

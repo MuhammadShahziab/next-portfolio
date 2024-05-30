@@ -26,6 +26,12 @@ const controls = [
     name: "name",
   },
   {
+    lable: "sub Heading",
+    type: "text",
+    placeholder: "Insert your sub Heading",
+    name: "subHeading",
+  },
+  {
     lable: "Animated Text",
     type: "text",
     placeholder: "eg: react, next, etc ",
@@ -37,12 +43,7 @@ const controls = [
     placeholder: "Insert your Description",
     name: "description",
   },
-  {
-    lable: "sub Heading",
-    type: "text",
-    placeholder: "Insert your sub Heading",
-    name: "subHeading",
-  },
+
   {
     lable: "Github",
     type: "text",
@@ -128,7 +129,7 @@ const Headerpage = () => {
             formDataa={headerViewFormData}
           />
 
-          <div className="flex justify-center items-center ">
+          <div className="flex justify-center mt-4 items-center ">
             <Button
               saveData={saveData}
               loading={loading}

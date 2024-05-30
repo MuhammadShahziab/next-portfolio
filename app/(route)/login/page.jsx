@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
-
 import { HashLoader } from "react-spinners";
 import toast, { Toaster } from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
@@ -26,18 +25,17 @@ const Login = () => {
       const res = await signIn("credentials", {
         email,
         password,
-        callbackUrl: `${process.env.NEXT_PUBLIC_API_URL}/dashboard`,
         redirect: false,
       });
-
-      if (res.error) {
+      if (res.ok) {
+        toast.success("Login Success");
+        setLoading(false);
+        router.push(`${process.env.NEXT_PUBLIC_API_URL}/dashboard`);
+        setError(null);
+      } else if (res.error) {
         setError(res.error); // Set the error state
         toast.error(res.error); // Display error message with toast
         setLoading(false);
-      } else {
-        toast.success("Login Success");
-        setLoading(false);
-        setError(null);
       }
     } catch (error) {
       setError("Failed to login"); // Set a generic error message
@@ -45,11 +43,6 @@ const Login = () => {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    if (status === "authenticated") {
-      router.push(`${process.env.NEXT_PUBLIC_API_URL}/dashboard`);
-    }
-  }, [status, router]);
 
   return (
     <section className="min-h-screen ">
@@ -66,10 +59,10 @@ const Login = () => {
           </div>
         </div>
         <div className="bg-orange flex flex-col md:justify-center  items-center   w-full h-screen md:relative">
-          <h1 className="font-semibold flex justify-center   md:hidden  text-white text-2xl text-center mt-20">
+          <h1 className="font-semibold flex justify-center   md:hidden  text-white text-2xl text-center mt-11">
             <span className="text-[40px]">P</span>ortfolio
           </h1>
-          <div className=" w-[300px] sm:w-[400px]  2xl:top-48 bg-white mt-20 md:mt-0 flex flex-col  h-[500px]   px-6   rounded-md  shadow-xl md:absolute -left-24 2xl:-left-32">
+          <div className=" w-[300px] sm:w-[400px]  2xl:top-48 bg-white mt-11 md:mt-0 flex flex-col  h-[500px]   px-6   rounded-md  shadow-xl md:absolute -left-24 2xl:-left-32">
             <h1 className=" text-3xl mb-0 leading-7 max-md:flex-col   font-bold mt-8 text-orange ">
               Login <br />{" "}
               <span className="text-sm text-gray-400 ">
