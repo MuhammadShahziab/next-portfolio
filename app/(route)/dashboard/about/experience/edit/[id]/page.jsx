@@ -73,7 +73,7 @@ const Page = ({ params }) => {
       const response = await updateData("about", formData);
       setLoading(false);
       if (response && response.success) {
-        router.push("/dashboard/about/");
+        router.push("/dashboard/about/experience");
       } else {
         console.error("Failed to update about:", response);
       }
