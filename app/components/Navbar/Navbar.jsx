@@ -34,14 +34,16 @@ const Navbar = () => {
 
   return (
     <header className="padding-x z-20 py-4 leading-8 w-full lg:fixed lg:top-0 lg:left-0 fixed bottom-0 h-16 left-0 bg-offwhite ">
-      <nav className="flex justify-between items-center z-10 max-container">
+      <nav className="flex justify-between  items-center z-10 max-container">
         <motion.h2
           initial="offscreen"
           whileInView={"onscreen"}
           variants={leftToRight}
-          className="font-semibold text-[30px] text-orange"
+          className="font-semibold text-[16px]  md:text-[25px] mb-2 text-orange  italic "
         >
-          MS
+          <span className=" md:text-[40px] text-[20px]    font-bold">p</span>
+          <span className="max-md:hidden">orfolio</span>{" "}
+          <span className="font-bold ">.</span>
         </motion.h2>
         <div
           className={`max-lg:bg-white z-10 max-lg:shadow-3xl max-lg:fixed max-lg:bottom-0 ${
@@ -107,13 +109,13 @@ const Navbar = () => {
 
           <IoMdClose
             className="absolute bottom-4 right-7 lg:hidden"
-            size={30}
+            size={25}
             onClick={() => setOpenMenu(!openMenu)}
           />
         </div>
         <div className="lg:hidden">
           <AiOutlineAppstore
-            size={30}
+            size={25}
             onClick={() => setOpenMenu(!openMenu)}
             className="lg:hidden cursor-pointer"
           ></AiOutlineAppstore>

@@ -78,7 +78,7 @@ const About = ({ aboutData, contactData }) => {
           className="flex-1 
        "
         >
-          <div className="border border-indigo-100  w-full  p-1 flex justify-between rounded-2xl">
+          <div className="border border-indigo-100  w-full  p-1 flex justify-between rounded-3xl">
             {button?.map((btn) => {
               return (
                 <button

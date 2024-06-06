@@ -8,6 +8,7 @@ import Portfolio from "./sections/portfolio/Portfolio";
 import Services from "./sections/services/Services";
 import Technology from "./sections/technology/Technology";
 import { fetchPageData } from "./Fetchers";
+import Arrow from "./components/arrow/Arrow";
 // const extractdata = async (page) => {
 //   const { data } = await axios.get(`http://localhost:3000/api/${page}/get`);
 //   return data && data.data;
@@ -43,6 +44,7 @@ export default async function Home() {
       <section id="contact">
         <Footer></Footer>
       </section>
+      <Arrow></Arrow>
     </main>
   );
 }

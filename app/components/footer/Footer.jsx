@@ -19,7 +19,7 @@ const Footer = () => {
           initial="offscreen"
           whileInView={"onscreen"}
           variants={tittleVariants}
-          className="text-2xl font-bold max-w-[400px] text-black mx-auto max-container"
+          className="md:text-2xl text-xl px-7  font-bold text-center max-w-[400px] text-black mx-auto max-container"
         >
           Prepared to turn your ideas into reality? I&apos;m here to help.
         </motion.h1>
@@ -40,7 +40,7 @@ const Footer = () => {
             duration: 2,
             type: "spring",
           }}
-          className="text-white"
+          className="text-white text-sm"
         >
           Copyright Shahzaib. All rights reserved.
         </motion.label>
