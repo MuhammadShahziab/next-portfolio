@@ -43,7 +43,6 @@ const Navbar = () => {
         >
           <span className=" md:text-[40px] text-[20px]    font-bold">p</span>
           <span className="max-md:hidden">orfolio</span>{" "}
-          <span className="font-bold ">.</span>
         </motion.h2>
         <div
           className={`max-lg:bg-white z-10 max-lg:shadow-3xl max-lg:fixed max-lg:bottom-0 ${

@@ -31,8 +31,9 @@ const Navbar = () => {
         <span className=" text-black md:hidden" onClick={toggleOpenState}>
           {open ? <IoMdClose size={40} /> : <IoReorderThreeOutline size={40} />}
         </span>{" "}
-        <h2 className="text-orange font-bold text-2xl max-sm:hidden">
-          Msworld
+        <h2 className="font-semibold text-[16px]  md:text-[25px] mb-2 text-orange  italic ">
+          <span className=" md:text-[40px] text-[20px]    font-bold">p</span>
+          <span className="max-md:hidden">orfolio</span>{" "}
         </h2>
         <div>
           <ProfileImg />
