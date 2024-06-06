@@ -121,15 +121,21 @@ const ServiceCard = ({ services, action }) => {
         {isSelectedIndex && (
           <div
             className={
-              "fixed top-0 left-0 right-0 bottom-0 z-10 flex justify-center items-center px-4 bg-[rgba(0,0,0,0.1)] opacity-100"
+              "fixed top-0 left-0 right-0 bottom-0 z-10 flex justify-center items-center px-4 py-8 bg-[rgba(0,0,0,0.1)] opacity-100"
             }
           >
             <motion.div
               initial={{ scale: 0.5 }}
               animate={{ scale: 1 }}
               transition={{ duration: 1, type: "spring" }}
-              className="card w-[350px] md:w-[500px] rounded-lg py-6 md:px-7 px-4  bg-white relative shadow-md"
+              className="card overflow-scroll  w-[350px] md:w-[500px] h-5/6 rounded-lg py-6 md:px-7 px-4  bg-white  shadow-md"
             >
+              <div
+                className="sticky top-0 bg-white w-10 flex justify-center items-center h-10 rounded-full  right-28 z-10 cursor-pointer "
+                onClick={() => setSelectedCardIndex(null)}
+              >
+                <RxCross2 size={25}></RxCross2>
+              </div>
               <div className="flex justify-center items-center mb-3  ">
                 <motion.div
                   initial="offscreen"
@@ -163,7 +169,7 @@ const ServiceCard = ({ services, action }) => {
               >
                 {item.description}
               </motion.p>
-              <ul>
+              <ul className="">
                 {item?.data?.map((point) => {
                   return (
                     <motion.li
@@ -183,12 +189,6 @@ const ServiceCard = ({ services, action }) => {
                   );
                 })}
               </ul>
-              <div
-                className="absolute top-4 cursor-pointer right-4"
-                onClick={() => setSelectedCardIndex(null)}
-              >
-                <RxCross2 size={25}></RxCross2>
-              </div>
             </motion.div>
           </div>
         )}
