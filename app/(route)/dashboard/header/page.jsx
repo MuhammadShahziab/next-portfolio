@@ -85,7 +85,6 @@ const controls = [
 
 const Headerpage = () => {
   const [headerViewFormData, setHeaderViewFormData] = useState(HeaderFormData);
-  console.log(headerViewFormData, "chekc header");
   const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useState(false);
   const [pageloading, setPageLoading] = useState(false);

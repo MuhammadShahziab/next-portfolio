@@ -1,6 +1,5 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export async function addData(currentTab, formData) {
   try {
     const { data } = await axios.post(
@@ -37,7 +36,7 @@ export async function getData(currentTab) {
 export async function updateData(currentTab, formData) {
   try {
     const { data } = await axios.put(
-      `${apiUrl}/api/${currentTab}/update`,
+      `/api/${currentTab}/update`,
       { formData },
       {
         headers: {
@@ -60,7 +59,6 @@ export async function updateData(currentTab, formData) {
 export async function deleteData(currentTab, id) {
   try {
     const { data } = await axios.delete(`/api/${currentTab}/delete/${id}`);
-    console.log(data, "services file delete method");
     if (data.success) {
       toast.success(data.message);
       return data;
