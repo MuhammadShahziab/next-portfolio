@@ -2,8 +2,8 @@
 import { addData, getData, updateData } from "@/app/(services)/services";
 import Button from "@/app/components/admin-view/button/Button";
 import FormControls from "@/app/components/admin-view/form-controls";
+import Loading from "@/app/components/admin-view/Loading";
 import React, { useEffect, useState } from "react";
-import { HashLoader } from "react-spinners";
 
 const HeaderFormData = {
   name: "",
@@ -78,13 +78,14 @@ const controls = [
   {
     lable: "CV",
     type: "file",
-    placeholder: "Insert your Image",
+    placeholder: "Insert your Cv",
     name: "cv",
   },
 ];
 
 const Headerpage = () => {
   const [headerViewFormData, setHeaderViewFormData] = useState(HeaderFormData);
+  console.log(headerViewFormData, "chekc header");
   const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useState(false);
   const [pageloading, setPageLoading] = useState(false);
@@ -94,7 +95,6 @@ const Headerpage = () => {
       ? await updateData("header", headerViewFormData)
       : await addData("header", headerViewFormData);
     setLoading(false);
-    console.log(response, "check header respone 2");
     if (response?.success) {
       extractData();
     }
@@ -117,10 +117,7 @@ const Headerpage = () => {
   return (
     <div className="padding max-md:mt-16  w-full ">
       {pageloading ? (
-        <div className="w-full h-full flex justify-center items-center">
-          {" "}
-          <HashLoader color="#FF715F" />
-        </div>
+        <Loading></Loading>
       ) : (
         <>
           <FormControls

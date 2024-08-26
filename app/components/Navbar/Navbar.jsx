@@ -1,5 +1,4 @@
 "use client";
-// import { menu } from "@/constants";
 import { menu } from "../../constants";
 import Link from "next/link";
 import { useState } from "react";
@@ -33,19 +32,23 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="padding-x z-20 py-4 leading-8 w-full lg:fixed lg:top-0 lg:left-0 fixed bottom-0 h-16 left-0 bg-offwhite ">
-      <nav className="flex justify-between  items-center z-10 max-container">
+    <header className="padding-x z-20   w-full lg:fixed lg:top-0 lg:left-0 fixed bottom-0 h-14  left-0   bg-white/10 backdrop-blur-lg backdrop-saturate-150">
+      <nav className="flex justify-between  items-center h-full z-10 max-container ">
         <motion.h2
           initial="offscreen"
           whileInView={"onscreen"}
           variants={leftToRight}
-          className="font-semibold text-[16px]  md:text-[25px] mb-2 text-orange  italic "
+          className="font-semibold text-[16px] relative text-orange"
         >
-          <span className=" md:text-[40px] text-[20px]    font-bold">p</span>
-          <span className="max-md:hidden">orfolio</span>{" "}
+          <span className="md:text-[35px] text-[20px] bg-green-400 rounded-2xl h-6 px-1 text-white font-semibold">
+            P
+          </span>
+          <span className="max-md:text-sm md:text-[23px] ml-1">ortfolio</span>
+          <span className="h-2 w-2 rounded-full bg-green-400 absolute right-[-12px] animate-pulse top-1/2 lg:mt-1 "></span>
         </motion.h2>
+
         <div
-          className={`max-lg:bg-white z-10 max-lg:shadow-3xl max-lg:fixed max-lg:bottom-0 ${
+          className={`max-lg:bg-white z-50 max-lg:shadow-3xl max-lg:fixed max-lg:bottom-0 ${
             openMenu ? "block " : "max-lg:hidden"
           } transition  left-0 max-lg:w-full max-lg:pt-8 px-6 max-lg:pb-16 max-lg:rounded-tl-xl max-lg:rounded-tr-xl`}
         >
@@ -66,9 +69,9 @@ const Navbar = () => {
                     href={item.href}
                     className={` ${
                       getPath[1] === "projects"
-                        ? "text-orange border-b border-orange"
+                        ? "text-orange font-medium border-b border-orange"
                         : ""
-                    }   font-medium lg:text-base flex flex-col items-center justify-center`}
+                    }   text-sm lg:text-base gap-y-1 flex flex-col items-center justify-center`}
                   >
                     <label className="text-3xl text-orange lg:hidden">
                       {item.icon}
@@ -84,16 +87,16 @@ const Navbar = () => {
                 return (
                   <li
                     onClick={() => setOpenMenu(false)}
-                    className="flex flex-col gap-3 items-center"
+                    className="flex flex-col justify-center  gap-3 items-center"
                     key={index}
                   >
                     <Link
                       href={item.href}
                       className={` ${
                         getPath[1] === item.label
-                          ? "text-orange  md:border-b-2 pb-[3px]  border-orange"
+                          ? "text-orange font-medium  md:border-b-2   border-orange"
                           : ""
-                      } font-semibold lg:text-base capitalize 2xl:text-2xl flex items-center justify-center flex-col`}
+                      } text-sm lg:text-base capitalize 2xl:text-2xl flex items-center justify-center  flex-col`}
                     >
                       <label className="text-3xl text-orange lg:hidden ">
                         {item.icon}
@@ -107,8 +110,8 @@ const Navbar = () => {
           )}
 
           <IoMdClose
-            className="absolute bottom-4 right-7 lg:hidden"
-            size={25}
+            className="absolute bottom-5 right-5 lg:hidden"
+            size={20}
             onClick={() => setOpenMenu(!openMenu)}
           />
         </div>
@@ -116,7 +119,7 @@ const Navbar = () => {
           <AiOutlineAppstore
             size={25}
             onClick={() => setOpenMenu(!openMenu)}
-            className="lg:hidden cursor-pointer"
+            className="absolute bottom-5 right-5 lg:hidden cursor-pointer"
           ></AiOutlineAppstore>
         </div>
       </nav>

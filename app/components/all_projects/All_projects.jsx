@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Pagination from "../pagination/Pagination";
-import Card from "../projectCard/Card";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {
@@ -9,6 +8,8 @@ import {
   tagVariants,
   tittleVariants,
 } from "@/app/(services)/animation/animation";
+
+import ProjectCard from "../projectCard/ProjectCard";
 const All_projects = ({ projectData }) => {
   const [category, setCategory] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,7 +48,7 @@ const All_projects = ({ projectData }) => {
   };
   return (
     <>
-      <section className="max-container padding ">
+      <section className="max-container padding  ">
         <div className="  py-2 mb-6 flex flex-col justify-center items-center">
           <motion.h2
             initial="offscreen"
@@ -94,27 +95,28 @@ const All_projects = ({ projectData }) => {
           </div>
         </div>
 
-        <div className="flex justify-between items-center  mt-7 py-3 border-b">
+        {/* <div className="flex justify-between items-center  mt-7 py-3 ">
           <div className="flex justify-center  items-center relative  md:mb-0 ">
-            <select
-              onChange={(e) => setPageSize(e.target.value)}
-              id="small"
-              className="p-2 w-full text-center text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange dark:focus:border-blue-500 mr-4"
-            >
-              <option value="6" selected>
-                Per Page
-              </option>
-              <option value="3">3</option>
-              <option value="6">6</option>
-              <option value="9">9</option>
-              <option value="12">12</option>
-            </select>
+            <Select>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue
+                  onChange={(e) => setPageSize(e.target.value)}
+                  placeholder="per page"
+                />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="4">4</SelectItem>
+                <SelectItem value="8">8</SelectItem>
+                <SelectItem value="12">12</SelectItem>
+                <SelectItem value="16">16</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
           <div className="max-md:w-[150px]">
             <input
               type="search"
-              className="relative m-0 block w-full flex-auto rounded border  bg-transparent bg-clip-padding px-3 py-[0.25rem] text-baseb text-black font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3]  focus:shadow-inset focus:outline-none motion-reduce:transition-none "
-              placeholder="Search"
+              className="relative m-0 block w-full flex-auto rounded-lg border  bg-transparent bg-clip-padding px-3 py-1.5 text-baseb text-black font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3]  focus:shadow-inset focus:outline-none motion-reduce:transition-none "
+              placeholder="Search Projects"
               aria-label="Search"
               value={search}
               onChange={(e) => setSeach(e.target.value)}
@@ -122,24 +124,28 @@ const All_projects = ({ projectData }) => {
               aria-describedby="button-addon2"
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="flex justify-center">
           <div
             className={`${
-              currentData.length >= 1
-                ? " grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 2xl:grid-cols-4 text-center gap-x-6 mt-7 gap-y-4 "
+              currentData?.length >= 1
+                ? " grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4 2xl:grid-cols-4 text-center gap-x-6 mt-7 gap-y-4 "
                 : "md:h-[300px]   flex justify-center items-center"
-            }    `}
+            }   w-full `}
           >
             {currentData.length >= 1 ? (
               currentData?.map((project, index) => {
                 return (
-                  <Card projects={project} loading={false} key={index}></Card>
+                  <ProjectCard
+                    projects={project}
+                    loading={false}
+                    key={index}
+                  ></ProjectCard>
                 );
               })
             ) : (
-              <div className="flex justify-center items-center w-full   flex-col mt-8  ">
+              <div className="flex justify-center items-center w-full    flex-col mt-8  ">
                 <div className=" flex justify-center flex-col items-center">
                   <Image
                     src={"/assets/empty_icon.jpg"}

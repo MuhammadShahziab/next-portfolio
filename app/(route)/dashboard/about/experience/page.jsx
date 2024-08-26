@@ -7,7 +7,9 @@ import { HashLoader } from "react-spinners";
 
 import Link from "next/link";
 import DeleteCard from "@/app/components/admin-view/deleteCard/Card";
-import { CirclePlus, Pencil, Trash, View } from "lucide-react";
+import { CirclePlus, Eye, Pencil, Trash, View } from "lucide-react";
+import Loading from "@/app/components/admin-view/Loading";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const aboutFormdata = {
   title: "experience",
@@ -120,39 +122,34 @@ const Aboutpage = () => {
     setError("");
   }, [show]);
   return (
-    <div className="padding max-md:mt-16 flex flex-col gap-4    w-full">
+    <div className="padding max-md:mt-9 flex flex-col gap-4    w-full">
       {pageLoading ? (
-        <div className="w-full h-full flex justify-center items-center">
-          {" "}
-          <HashLoader color="#FF715F" />
-        </div>
+        <Loading></Loading>
       ) : (
         <>
-          <div className="mb-3 md:mb-5">
-            <button
-              onClick={() => setShow((pre) => !pre)}
-              className="flex justify-center text-base md:text-lg hover:shadow-md gap-3 py-2 px-2 md:px-4 rounded-md bg-green-300 text-white items-center"
-            >
-              {show ? (
-                <>
-                  {" "}
-                  <CirclePlus className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" />{" "}
-                  Add
-                </>
-              ) : (
-                <>
-                  {" "}
-                  <View className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" /> See
-                </>
-              )}
-            </button>
+          <div className=" relative">
+            {!show ? (
+              <>
+                <IoIosArrowRoundBack
+                  onClick={() => setShow((pre) => !pre)}
+                  className="text-orange absolute -top-6 cursor-pointer -left-10 text-4xl hidden lg:flex"
+                ></IoIosArrowRoundBack>
+              </>
+            ) : (
+              <button
+                onClick={() => setShow((pre) => !pre)}
+                className="flex justify-center text-base  hover:shadow-md  gap-2 py-2 px-2 md:px-4 rounded-md bg-green-400 text-white items-center"
+              >
+                <CirclePlus className="w-5 h-5 2xl:w-6 2xl:h-6" /> Create
+              </button>
+            )}
           </div>
 
           {!show ? (
             <>
-              <div className="flex items-center max-md:justify-center gap-8">
+              <div className="flex items-center mt-3 max-md:justify-center gap-8">
                 <label
-                  className={`w-28 cursor-pointer transition-all duration-300 h-20 flex justify-center items-center  border text-lg ${
+                  className={`w-28 cursor-pointer transition-all duration-300 h-20 flex justify-center items-center   text-lg ${
                     formData.title === "experience"
                       ? "bg-orange text-white font-semibold"
                       : "bg-white border text-black"
@@ -179,7 +176,7 @@ const Aboutpage = () => {
                   return (
                     <div
                       key={index}
-                      className="max-md:grid max-md:grid-cols-2 flex mt-4 gap-4"
+                      className="max-md:grid max-md:grid-cols-2 flex items-center mt-4 gap-4"
                     >
                       <input
                         type="text"
@@ -222,24 +219,21 @@ const Aboutpage = () => {
                         }
                       />
 
-                      <div className=" flex justify-center items-center ">
-                        <span
-                          onClick={() => handleRemove(index)}
-                          className="w-10 h-10 flex  cursor-pointer text-red-600 font-semibold justify-center items-center border rounded-r-full "
-                        >
-                          {" "}
-                          <Trash />
-                        </span>
-                      </div>
+                      <button
+                        onClick={() => handleRemove(index)}
+                        className="  justify-center text-red-500 items-center w-10 h-10 flex  cursor-pointer "
+                      >
+                        <Trash size={20}></Trash>
+                      </button>
                     </div>
                   );
                 })}
                 <div className=" w-full flex justify-end items-center mt-4">
                   <button
-                    className="px-4 py-2 flex gap-1 justify-center items-center bg-green-300 font-semibold rounded-md text-white"
+                    className="lg:px-4  px-3 py-2 flex gap-1 justify-center items-center bg-green-400  rounded-md text-white"
                     onClick={handleAddMore}
                   >
-                    <CirclePlus size={20} /> Add
+                    <CirclePlus size={17} /> Add
                   </button>
                 </div>
                 <span className="text-red-500 font-semibold w-full text-center  block">
@@ -266,7 +260,7 @@ const Aboutpage = () => {
               {data && data.length > 0 ? (
                 <>
                   {" "}
-                  <div className="flex-1 border rounded-sm px-4 py-3">
+                  <div className="flex-1 border mt-6 lg:mt-2 rounded-sm px-4  py-3">
                     <div className="flex justify-between">
                       <h2 className="capitalize text-xl  font-semibold">
                         {getParticularData(data, "experience")?.title}
@@ -280,7 +274,7 @@ const Aboutpage = () => {
                               }`}
                             >
                               {" "}
-                              <button className="bg-blue-200 rounded-full cursor-pointer w-8 h-8 flex justify-center p-1.5 items-center text-blue-500">
+                              <button className="bg-blue-100 rounded-full cursor-pointer w-8 h-8 flex justify-center p-1.5 items-center text-blue-500">
                                 <Pencil size={25} />
                               </button>
                             </Link>
@@ -292,7 +286,7 @@ const Aboutpage = () => {
                                   getParticularData(data, "experience")?.title
                                 )
                               }
-                              className="mr-2 bg-red-200 rounded-full w-8 h-8 flex justify-center items-center text-red-500"
+                              className="mr-2 bg-red-100 rounded-full w-8 h-8 flex justify-center items-center text-red-500"
                             >
                               <Trash size={20} />
                             </button>
@@ -307,11 +301,11 @@ const Aboutpage = () => {
                         getParticularData(data, "experience")?.data?.map(
                           (item, index) => (
                             <div
-                              className="border bg-slate-50 mb-3  py-2 px-2 rounded-md mt-4"
+                              className=" bg-gray-50 mb-3  py-2 px-2 rounded-md mt-4"
                               key={index}
                             >
                               <div className="flex items-center gap-5">
-                                <label className="w-24 font-semibold  text-lg">
+                                <label className="w-24 font-medium  text-lg">
                                   Company
                                 </label>
                                 <span className="capitalize text-softtext">
@@ -319,7 +313,7 @@ const Aboutpage = () => {
                                 </span>
                               </div>
                               <div className="flex items-center gap-5">
-                                <label className="font-semibold w-24 text-lg">
+                                <label className="font-medium w-24 text-lg">
                                   Designation
                                 </label>
                                 <span className="capitalize text-softtext">
@@ -327,7 +321,7 @@ const Aboutpage = () => {
                                 </span>
                               </div>
                               <div className="flex items-center gap-5">
-                                <label className="font-semibold w-24 text-lg">
+                                <label className="font-medium w-24 text-lg">
                                   Years
                                 </label>
                                 <span className="capitalize text-softtext">
@@ -349,7 +343,7 @@ const Aboutpage = () => {
                     </div>
                   </div>
                   <div className="flex-1 border rounded-sm px-4 py-3">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between items-center">
                       <h2 className="capitalize text-xl font-semibold">
                         {getParticularData(data, "education")?.title}
                       </h2>
@@ -363,7 +357,7 @@ const Aboutpage = () => {
                               }`}
                             >
                               {" "}
-                              <span className="bg-blue-200 rounded-full cursor-pointer w-8 h-8 flex justify-center items-center p-1.5 text-blue-500">
+                              <span className="bg-blue-100 rounded-full cursor-pointer w-8 h-8 flex justify-center items-center p-1.5 text-blue-500">
                                 <Pencil size={25} />
                               </span>
                             </Link>
@@ -374,7 +368,7 @@ const Aboutpage = () => {
                                   getParticularData(data, "experience")?.title
                                 )
                               }
-                              className="mr-2 bg-red-200 rounded-full w-8 h-8 flex justify-center items-center text-red-500"
+                              className="mr-2 bg-red-100 rounded-full w-8 h-8 flex justify-center items-center text-red-500"
                             >
                               <Trash size={20} />
                             </button>
@@ -389,11 +383,11 @@ const Aboutpage = () => {
                       getParticularData(data, "education")?.data?.map(
                         (item, index) => (
                           <div
-                            className="border mb-3 py-2 px-2 rounded-md mt-4"
+                            className="bg-gray-50 mb-3  py-2 px-2 rounded-md mt-5"
                             key={index}
                           >
                             <div className="flex items-center gap-5">
-                              <label className="w-20 font-semibold text-lg">
+                              <label className="w-20 font-medium text-lg">
                                 Institute
                               </label>
                               <span className="capitalize text-softtext">
@@ -401,7 +395,7 @@ const Aboutpage = () => {
                               </span>
                             </div>
                             <div className="flex items-center gap-5">
-                              <label className="font-semibold w-20 text-lg">
+                              <label className="font-medium w-20 text-lg">
                                 Degree
                               </label>
                               <span className="capitalize text-softtext">
@@ -409,7 +403,7 @@ const Aboutpage = () => {
                               </span>
                             </div>
                             <div className="flex items-center gap-5">
-                              <label className="font-semibold w-20 text-lg">
+                              <label className="font-medium w-20 text-lg">
                                 Years
                               </label>
                               <span className="capitalize text-softtext">

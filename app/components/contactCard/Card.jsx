@@ -10,11 +10,8 @@ const Card = ({ icon, contact, name, color, bg }) => {
           {icon}
         </span>
         <h1 className="font-semibold text-lg ">{name}</h1>
-        <a href="mailto:muhammadshahzaib138@gmail.com">
-          {" "}
-          <p className="text-softtext px-2 font-semibold whitespace-nowrap">
-            {contact}
-          </p>
+        <a href={contact}>
+          <p className="text-softtext px-2  whitespace-nowrap">{contact}</p>
         </a>
       </div>
     </div>

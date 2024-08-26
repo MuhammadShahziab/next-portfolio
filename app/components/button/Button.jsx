@@ -10,7 +10,7 @@ const Button = ({ label, bg, icon, link, onClick }) => {
     <button
       className={`${
         bg ? `bg-${bg}` : "bg-black"
-      } px-2 sm:px-4 text-white rounded-lg shadow-xl flex gap-2 items-center text-center  py-2 text-md max-sm:text-sm`}
+      } px-2 sm:px-4 text-white rounded-full shadow-xl flex gap-2 items-center text-center  py-2 text-md max-sm:text-sm`}
       onClick={handleClick}
     >
       {link ? <Link href={link}>{label}</Link> : label}

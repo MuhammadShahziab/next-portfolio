@@ -4,7 +4,7 @@ import DeleteCard from "@/app/components/admin-view/deleteCard/Card";
 import { Trash } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { HashLoader } from "react-spinners";
+import { ClipLoader, HashLoader } from "react-spinners";
 
 const AddCategorypage = () => {
   const [category, setCategory] = useState("");
@@ -32,7 +32,6 @@ const AddCategorypage = () => {
         setError("");
         setCategory("");
       }
-      console.log(res, "ceheck respone ccategory");
     } catch (error) {
       console.log(error);
     }
@@ -58,12 +57,12 @@ const AddCategorypage = () => {
     extractCategory();
   }, []);
   return (
-    <div className="padding max-md:mt-16 flex flex-col gap-4 w-full">
+    <div className="padding max-md:mt-11 flex flex-col gap-4 w-full">
       <div className=" flex flex-col gap-10 ">
         <div className="max-w-[500px] ">
           <div className="  flex items-end gap-2">
             <div className="">
-              <label className="">New category name</label>
+              <label className="text-softtext">New category name</label>
               <input
                 type="text"
                 placeholder="Next.js,React.js,Node.js etc"
@@ -72,18 +71,18 @@ const AddCategorypage = () => {
                 onChange={(e) => setCategory(e.target.value)}
               ></input>
             </div>
-            <div className="">
-              <button
-                onClick={handleSubmit}
-                className="bg-green-400 text-lg text-white border-none outline-none px-4 md:px-8 py-3 rounded-lg"
-              >
-                {loading ? <HashLoader color="#ffffff" size={25} /> : " Create"}
-              </button>
-            </div>
+
+            <button
+              onClick={handleSubmit}
+              className="bg-green-400  text-white border-none outline-none px-4 md:px-8 mb-1 py-2 rounded-full"
+            >
+              Create
+              {loading && <ClipLoader color="#ffffff" size={20} />}
+            </button>
           </div>
           <div className=" w-full mt-4">
             {error && (
-              <span className="bg-red-300 text-white rounded-md block text-center w-full">
+              <span className="bg-red-100 text-red-500 py-0.5 rounded-md block text-center w-full">
                 {error}
               </span>
             )}
@@ -114,17 +113,16 @@ const AddCategorypage = () => {
                 return (
                   <div
                     key={index}
-                    className="flex justify-between rounded-md bg-gray-100 max-w-[500px] py-4 px-4 mt-3"
+                    className="flex justify-between rounded-md bg-gray-100 capitalize max-w-[500px] py-3 lg:py-4 px-4 mt-3"
                   >
-                    <div>
-                      <h4>{item.category}</h4>
-                    </div>
+                    <h4>{item.category}</h4>
+
                     <div>
                       <span
                         className="text-red-500 cursor-pointer"
                         onClick={() => confirmDelete(item._id, item.category)}
                       >
-                        <Trash></Trash>
+                        <Trash size={20}></Trash>
                       </span>
                     </div>
                   </div>

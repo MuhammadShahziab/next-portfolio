@@ -9,11 +9,6 @@ const Pagination = ({
   const handleClick = (page) => {
     handlePageChange(page);
   };
-  // const pageNumbers = [];
-
-  // for (let i = 1; i <= Math.ceil(itemLength / pageSize); i++) {
-  //   pageNumbers.push(i);
-  // }
 
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(itemLength / pageSize); i++) {

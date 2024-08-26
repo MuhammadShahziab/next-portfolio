@@ -1,6 +1,5 @@
 "use client";
 import { TiTick } from "react-icons/ti";
-import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
 import DeleteCard from "@/app/components/admin-view/deleteCard/Card";
 import Link from "next/link";
@@ -8,7 +7,14 @@ import Image from "next/image";
 import { MoveRight, Pencil, Trash } from "lucide-react";
 import { motion } from "framer-motion";
 import {
-  containerVariants,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+import {
   containerVariantsView,
   desVariants,
   imageVariant,
@@ -21,7 +27,7 @@ const ServiceCard = ({ services, action }) => {
   const [deleteId, setDeleteId] = useState(null);
   const [deletedName, setDeletedName] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
-
+  console.log(selectedCardIndex);
   const handleToggle = (index) => {
     setSelectedCardIndex(index);
   };
@@ -33,12 +39,12 @@ const ServiceCard = ({ services, action }) => {
   return services?.map((item, index) => {
     const isSelectedIndex = index === selectedCardIndex;
     return (
-      <div key={item._id}>
+      <>
         <motion.div
           initial="offscreen"
           whileInView={"onscreen"}
           variants={containerVariantsView((index + 1) * 0.1)}
-          className="border min-h-[220px] rounded-lg relative mt-10"
+          className="border min-h-[220px] bg-service_shape bg-no-repeat bg-cover bg-offwhite/70 rounded-lg relative mt-10"
           key={item._id}
         >
           <div className="flex justify-center rounded-md absolute -top-6 left-36 mb-0">
@@ -46,7 +52,7 @@ const ServiceCard = ({ services, action }) => {
               initial="offscreen"
               whileInView={"onscreen"}
               variants={imageVariant}
-              className="border flex justify-center items-center w-16 h-16 rounded-full overflow-hidden"
+              className="border flex justify-center items-center w-16 h-16 rounded-full bg-white overflow-hidden"
             >
               <Image
                 src={item.image}
@@ -63,7 +69,7 @@ const ServiceCard = ({ services, action }) => {
                 initial="offscreen"
                 whileInView={"onscreen"}
                 variants={tittleVariants}
-                className="font-bold text-xl text-black capitalize text-center mb-4"
+                className="font-semibold text-xl text-black capitalize text-center mb-4"
               >
                 {item.name}
               </motion.h1>
@@ -71,7 +77,7 @@ const ServiceCard = ({ services, action }) => {
                 initial="offscreen"
                 whileInView={"onscreen"}
                 variants={desVariants}
-                className="text-soft text-[15px] 2xl:text-md mt-5  leading-5"
+                className="text-softtext text-[15px] 2xl:text-md mt-5  leading-5"
               >
                 {item.description.slice(0, 125)}...
               </motion.p>
@@ -119,80 +125,73 @@ const ServiceCard = ({ services, action }) => {
           />
         )}
         {isSelectedIndex && (
-          <div
-            className={
-              "fixed top-0 left-0 right-0 bottom-0 z-10 flex justify-center items-center px-4 py-8 bg-[rgba(0,0,0,0.1)] opacity-100"
-            }
+          <Dialog
+            open={isSelectedIndex}
+            onOpenChange={() => setSelectedCardIndex(null)}
           >
-            <motion.div
-              initial={{ scale: 0.5 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1, type: "spring" }}
-              className="card overflow-scroll  w-[350px] md:w-[500px] h-5/6 rounded-lg py-6 md:px-7 px-4  bg-white  shadow-md"
-            >
-              <div
-                className="sticky top-0 bg-white w-10 flex justify-center items-center h-10 rounded-full  right-28 z-10 cursor-pointer "
-                onClick={() => setSelectedCardIndex(null)}
-              >
-                <RxCross2 size={25}></RxCross2>
-              </div>
-              <div className="flex justify-center items-center mb-3  ">
-                <motion.div
-                  initial="offscreen"
-                  whileInView={"onscreen"}
-                  variants={imageVariant}
-                  className="border overflow-hidden w-[85px] h-[85px] md:w-[100px] flex justify-center items-center p-2 md:h-[100px]  rounded-full"
-                >
-                  <Image
-                    src={item?.image}
-                    width={90}
-                    height={90}
-                    alt="service_image"
-                    className=" object-contain "
-                  ></Image>
-                </motion.div>
-              </div>
-              <motion.h1
-                initial="offscreen"
-                whileInView={"onscreen"}
-                variants={tittleVariants}
-                className="font-bold capitalize text-xl mb-4 text-center "
-              >
-                {/* web designing */}
-                {item.name}
-              </motion.h1>
-              <motion.p
-                initial="offscreen"
-                whileInView={"onscreen"}
-                variants={desVariants}
-                className="text-softtext text-base mb-5"
-              >
-                {item.description}
-              </motion.p>
-              <ul className="">
-                {item?.data?.map((point) => {
-                  return (
-                    <motion.li
-                      initial="offscreen"
-                      whileInView={"onscreen"}
-                      variants={desVariants}
-                      className="flex items-center mb-1 gap-x-3"
-                      key={point._id}
-                    >
-                      <span className="border text-orange border-orange w-4 h-4 flex  justify-center items-center rounded-full">
-                        <TiTick></TiTick>
-                      </span>{" "}
-                      <p className="md:text-[17px] text-[17px] text-softtext leading-normal">
-                        {point.points}
-                      </p>{" "}
-                    </motion.li>
-                  );
-                })}
-              </ul>
-            </motion.div>
-          </div>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>
+                  {" "}
+                  <motion.h1
+                    initial="offscreen"
+                    whileInView={"onscreen"}
+                    variants={tittleVariants}
+                    className="font-semibold capitalize text-xl  text-center text-orange"
+                  >
+                    {item.name}
+                  </motion.h1>
+                </DialogTitle>
+                <DialogDescription>
+                  <motion.div
+                    initial="offscreen"
+                    whileInView={"onscreen"}
+                    variants={imageVariant}
+                    className="border overflow-hidden w-[85px] h-[85px] mx-auto md:w-[100px] flex justify-center items-center p-2 md:h-[100px] rounded-full"
+                  >
+                    <Image
+                      src={item?.image}
+                      width={90}
+                      height={90}
+                      alt="service_image"
+                      className="object-contain"
+                    />
+                  </motion.div>
+
+                  <motion.p
+                    initial="offscreen"
+                    whileInView={"onscreen"}
+                    variants={desVariants}
+                    className="text-softtext font-sans text-base px-4 mt-2 mb-5"
+                  >
+                    {item.description}
+                  </motion.p>
+                  <div className="max-h-[250px] overflow-y-scroll p2-3 ">
+                    <ul>
+                      {item?.data?.map((point) => (
+                        <motion.li
+                          initial="offscreen"
+                          whileInView={"onscreen"}
+                          variants={desVariants}
+                          className="flex items-start font-sans mb-1 gap-x-3 px-3"
+                          key={point._id}
+                        >
+                          <span className="border mt-1 text-green-400 border-green-400 w-4 h-4 flex justify-center items-center rounded-full">
+                            <TiTick />
+                          </span>
+                          <p className="md:text-[15px] leading-1 text-sm text-softtext ">
+                            {point.points}
+                          </p>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
         )}
-      </div>
+      </>
     );
   });
 };

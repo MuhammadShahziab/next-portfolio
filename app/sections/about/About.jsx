@@ -184,12 +184,12 @@ const About = ({ aboutData, contactData }) => {
                       initial="offscreen"
                       whileInView={"onscreen"}
                       variants={desVariants}
-                      className="flex gap-x-3 items-center"
+                      className="flex gap-x-3 items-center "
                     >
                       <span className="text-orange ">
                         <MapPin />
                       </span>{" "}
-                      <div className="text-black text-md 2xl:text-lg capitalize md:whitespace-nowrap ">
+                      <div className="text-black text-md 2xl:text-lg capitalize  ">
                         {address}
                       </div>
                     </motion.div>

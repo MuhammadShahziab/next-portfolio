@@ -4,8 +4,9 @@ import { IoDownloadOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 import Typewriter from "typewriter-effect";
-import Button from "@/app/components/button/Button";
 import Social_icons from "@/app/components/socialIcons/Social_icons";
+import { Button } from "@/components/ui/button";
+
 import Image from "next/image";
 import {
   desVariants,
@@ -14,11 +15,29 @@ import {
   tittleVariants,
 } from "@/app/(services)/animation/animation";
 import Link from "next/link";
+import { saveAs } from "file-saver";
 
 const Hero = ({ heroData }) => {
-  const { name, animatedText, description, subHeading, image, cv } =
-    heroData[0];
+  const {
+    name,
+    animatedText,
+    description,
+    subHeading,
+    image,
+    cv,
+    github,
+    linkedIn,
+    instagram,
+    facebook,
+  } = heroData[0];
   const animate = animatedText.split(",");
+  const iconsLinks = [github, linkedIn, instagram, facebook];
+
+  const handleDownloadCV = () => {
+    if (cv) {
+      saveAs(cv, "Cv.pdf");
+    }
+  };
 
   return (
     <section
@@ -27,10 +46,10 @@ const Hero = ({ heroData }) => {
        sm:h-[90vh] bg-offwhite "
     >
       <div
-        className="flex lg:gap-x-52 2xl:justify-between  max-md:flex-col-reverse max-md:gap-6 max-container
+        className="flex  2xl:justify-between   max-md:flex-col-reverse max-md:gap-6 max-container
            mt-7"
       >
-        <div className="flex flex-col max-w-[600px] 2xl:w-full   xl:mx-0 justify-center ">
+        <div className="flex flex-col flex-1  2xl:w-full flex-wrap   xl:mx-0 justify-center ">
           <motion.div
             initial="offscreen"
             whileInView={"onscreen"}
@@ -51,7 +70,7 @@ const Hero = ({ heroData }) => {
             initial="offscreen"
             whileInView={"onscreen"}
             variants={tittleVariants}
-            className=" text-xl max-sm:text-black max-sm:text-[18px]  tracking-[2px] text-orange font-semibold mb-2  max-sm:py-1 "
+            className=" text-xl max-sm:text-black max-sm:text-[18px]  tracking-[2px] text-orange font-semibold mb-2 text-wrap  max-sm:py-1 "
           >
             <Typewriter
               options={{
@@ -76,19 +95,28 @@ const Hero = ({ heroData }) => {
             variants={tittleVariants}
             className="flex items-center gap-6 mt-4 sm:mt-6"
           >
+            <Link href="#contact">
+              <Button
+                className=" flex items-center gap-x-1"
+                variant="secondary"
+                size="lg"
+              >
+                Contact Me <IoIosSend className="text-xl text-green-400" />
+              </Button>
+            </Link>
+
             <Button
-              label="Contact Me"
-              bg="orange"
-              icon={<IoIosSend />}
-              link="#contact"
-            />
-            {cv && <Button label="Download Cv" icon={<IoDownloadOutline />} />}
+              onClick={handleDownloadCV}
+              className="bg-orange flex items-center gap-x-1"
+            >
+              Download CV <IoDownloadOutline className="text-xl" />
+            </Button>
           </motion.div>
           <div className=" md:flex hidden mt-5 sm:mt-8">
-            <Social_icons color="black"></Social_icons>
+            <Social_icons iconsLinks={iconsLinks} color="black"></Social_icons>
           </div>
         </div>
-        <div className="  2xl:w-full flex justify-center items-center">
+        <div className=" flex-1  2xl:w-full flex justify-center items-center">
           <motion.div
             initial="offscreen"
             whileInView={"onscreen"}

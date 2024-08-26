@@ -1,55 +1,83 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ["class"],
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+    "./app/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx}",
   ],
+  prefix: "",
   theme: {
-    fontSize: {
-      xs: ["12px", "16px"],
-      sm: ["14px", "20px"],
-      base: ["16px", "19.5px"],
-      lg: ["18px", "21.94px"],
-      xl: ["20px", "24.38px"],
-      "2xl": ["24px", "29.26px"],
-      "3xl": ["28px", "50px"],
-      "4xl": ["48px", "58px"],
-      "8xl": ["96px", "106px"],
-    },
-
-    extend: {
-      fontFamily: {
-        palanquin: ["Palanquin", "sans-serif"],
-        montserrat: ["Montserrat", "sans-serif"],
-        inter: ["Inter", "sans-serif"],
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
       },
+    },
+    extend: {
       colors: {
-        primary: "#ECEEFF",
-        offwhite: "#FFFAF5",
-        orange: "#FF715F",
-        black: "#3C3C43",
         softtext: "#626262",
-        "slate-gray": "#F6F6F7",
-        "pale-blue": "#F5F6FF",
-        "white-400": "rgba(255, 255, 255, 0.80)",
+        orange: "#FFA429",
+        offwhite: "#FAF9F6",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
-        hero: "url('/assets/hero/hero-bg.png')",
-        hero_shape: "url('/assets/hero/shape-1.svg')",
-        hero_shape2_light: "url('/assets/hero/shape-2-light.svg')",
-        hero_shape2_dark: "url('/assets/hero/shape-2-dark.svg')",
-        dots: "url('/assets/dots-light.svg)",
-        bg_card: "url('/assets/work/project-bg-light.png')",
-        emptyicon: "url('/assets/empty_icon.png')",
+        service_shape: "url('/assets/service-shape.png')",
       },
-      boxShadow: {
-        "3xl": "0 10px 40px rgba(0, 0, 0, 0.1)",
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
       },
-      screens: {
-        wide: "1440px",
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };

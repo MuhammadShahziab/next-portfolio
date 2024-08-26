@@ -1,11 +1,14 @@
 "use client";
 import { getSingleData, updateData } from "@/app/(services)/services";
 import Button from "@/app/components/admin-view/button/Button";
+import Loading from "@/app/components/admin-view/Loading";
 import { CirclePlus, ImageUp, Trash } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 import { HashLoader } from "react-spinners";
 
@@ -154,39 +157,49 @@ const Page = ({ params }) => {
   }, [id]);
 
   return (
-    <div className="padding max-md:mt-16  w-full">
+    <div className="padding   w-full">
       {pageLoading ? (
-        <div className="w-full h-full flex justify-center items-center">
-          {" "}
-          <HashLoader color="#FF715F" />
-        </div>
+        <Loading></Loading>
       ) : (
         <>
-          <div className="mt-6">
-            <div className="mb-4 ">
-              <input
-                type="text"
-                value={formData.name}
-                className="focus:border-orange"
-                placeholder="Service Name"
-                name="name"
-                onChange={(e) => handleNameChange("name", e.target.value)}
-              />
-            </div>
-            <div className="mb-4 ">
-              <input
-                type="text"
-                value={formData.description}
-                className="focus:border-orange"
-                placeholder="Description"
-                name="description"
-                onChange={(e) =>
-                  handleNameChange("description", e.target.value)
-                }
-              />
+          <div className="relative">
+            <Link href="/dashboard/services">
+              <IoIosArrowRoundBack className="text-orange absolute -top-6 cursor-pointer -left-10 text-4xl hidden lg:flex"></IoIosArrowRoundBack>
+            </Link>
+          </div>
+          <div className="mt-7">
+            <div className="grid grid-cols-3 gap-2 lg:gap-3 mb-2 ">
+              <div className="input_div   col-span-3 lg:col-span-1">
+                <label className="text-sm md:text-base text-softtext">
+                  Service Name<span className="text-red-500"> *</span>
+                </label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  className="focus:border-orange w-full"
+                  placeholder="Service Name"
+                  name="name"
+                  onChange={(e) => handleNameChange("name", e.target.value)}
+                />
+              </div>
+              <div className="input_div col-span-3 lg:col-span-2 ">
+                <label className="text-sm md:text-base text-softtext">
+                  Description<span className="text-red-500"> *</span>
+                </label>
+                <input
+                  type="text"
+                  value={formData.description}
+                  className="focus:border-orange"
+                  placeholder="Description"
+                  name="description"
+                  onChange={(e) =>
+                    handleNameChange("description", e.target.value)
+                  }
+                />
+              </div>
             </div>
 
-            <div className="md:grid md:grid-cols-2 mt-3 md:mt-0  gap-4">
+            <div className="md:grid md:grid-cols-2 mt-3  gap-4">
               {formData?.data?.map((item, index) => {
                 return (
                   <div key={index} className="flex max-md:mb-3 gap-2">
@@ -199,7 +212,7 @@ const Page = ({ params }) => {
                       onChange={(e) => handlePointChange(index, e.target.value)}
                     />
                     <span
-                      className="px-2 cursor-pointer py-1 text-xl flex justify-center items-center text-red-600 font-semibold"
+                      className="px-2 cursor-pointer py-1 text-[18px] flex justify-center items-center text-red-500 "
                       onClick={() => handleRemove(index)}
                     >
                       <Trash />
@@ -209,10 +222,10 @@ const Page = ({ params }) => {
               })}
             </div>
 
-            <div className=" w-full flex justify-center  md:justify-end items-center mt-4">
+            <div className=" w-full flex justify-end items-center mt-4">
               <button
                 onClick={handleAddMore}
-                className="px-6 py-2   flex gap-1 justify-center items-center bg-green-300 font-semibold rounded-md text-white"
+                className="lg:px-4 px-3 py-2   flex gap-1 justify-center items-center bg-green-400  rounded-md text-white"
               >
                 <CirclePlus size={20} /> Add point
               </button>
@@ -221,7 +234,7 @@ const Page = ({ params }) => {
               <div>
                 <label
                   htmlFor="upload"
-                  className="group w-[100px] h-[100px] md:w-32 md:h-32 font-semibold text-lg gap-2 rounded-md border flex flex-col justify-center items-center hover:bg-orange hover:text-white text-green-300 hover:border-none hover:shadow-md cursor-pointer"
+                  className="group w-[80px] h-[80px] md:w-24 md:h-24  transition-all duration-300 gap-2 rounded-md border flex flex-col justify-center items-center hover:bg-orange hover:text-white text-green-400 hover:border-none hover:shadow-md cursor-pointer"
                 >
                   Upload{" "}
                   <ImageUp size={25} className="group-hover:animate-bounce" />
@@ -235,11 +248,11 @@ const Page = ({ params }) => {
                 />
               </div>
               {imageLoading ? (
-                <div className="border w-[100px] h-[100px] bg-slate-100 animate-pulse rounded-md"></div>
+                <div className="w-[80px] h-[80px] md:w-[90px] md:h-[90px] bg-slate-100 animate-pulse rounded-md"></div>
               ) : (
                 <>
                   {formData?.image ? (
-                    <div className="border w-[100px] h-[80px] md:w-[120px] md:h-[100px] relative flex justify-center items-center rounded-md p-1">
+                    <div className=" w-[80px] h-[80px] md:w-[90px] md:h-[90px] relative flex justify-center items-center rounded-md p-1">
                       <Image
                         src={formData?.image}
                         layout="fill"
@@ -254,7 +267,7 @@ const Page = ({ params }) => {
             <span className="text-red-500 rounded-sm bg-red-100 font-semibold w-full text-center mt-4 block">
               {error}
             </span>
-            <div>
+            <div className="mt-11 ">
               <Button
                 saveData={saveData}
                 loading={loading}

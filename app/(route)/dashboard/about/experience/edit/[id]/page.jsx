@@ -6,6 +6,9 @@ import { HashLoader } from "react-spinners";
 import Button from "@/app/components/admin-view/button/Button";
 import { useRouter } from "next/navigation";
 import { CirclePlus, Trash } from "lucide-react";
+import Loading from "@/app/components/admin-view/Loading";
+import { IoIosArrowRoundBack } from "react-icons/io";
+import Link from "next/link";
 
 const aboutFormdata = {
   title: "experience",
@@ -104,17 +107,18 @@ const Page = ({ params }) => {
   return (
     <div className="padding max-md:mt-16 flex flex-col gap-4 w-full">
       {pageLoading ? (
-        <div className="w-full h-full flex justify-center items-center">
-          <HashLoader color="#FF715F" />
-        </div>
+        <Loading></Loading>
       ) : (
         <>
-          <div className="flex items-center max-md:justify-center gap-8">
+          <Link href="/dashboard/about/experience" className=" relative">
+            <IoIosArrowRoundBack className="text-orange absolute -top-6 cursor-pointer -left-10 text-4xl hidden lg:flex"></IoIosArrowRoundBack>
+          </Link>
+          <div className="flex mt-3 items-center max-md:justify-center gap-8">
             <label
-              className={`w-28 cursor-pointer transition-all duration-300 h-20 flex justify-center items-center border text-lg ${
+              className={`w-28 cursor-pointer transition-all duration-300 h-20 flex justify-center items-center  text-lg ${
                 formData.title === "experience"
                   ? "bg-orange text-white font-semibold"
-                  : "bg-white border text-black"
+                  : "bg-white border text-black "
               } rounded-md`}
               onClick={() => handleTitleChange("experience")}
             >
@@ -176,21 +180,21 @@ const Page = ({ params }) => {
                     }
                   />
 
-                  <span
-                    className="px-2 cursor-pointer py-1 text-xl flex justify-center items-center text-red-600 font-semibold"
+                  <buton
+                    className="flex justify-center items-center text-red-500"
                     onClick={() => handleRemove(index)}
                   >
-                    <Trash />
-                  </span>
+                    <Trash size={20} />
+                  </buton>
                 </div>
               );
             })}
             <div className="w-full flex justify-end items-center mt-4">
               <button
-                className="px-4 py-2 flex gap-1 justify-center items-center bg-green-300 font-semibold rounded-md text-white"
+                className="px-4 py-2 flex gap-1 justify-center items-center bg-green-400 rounded-md text-white"
                 onClick={handleAddMore}
               >
-                <CirclePlus size={20} /> Add
+                <CirclePlus size={17} /> Add
               </button>
             </div>
             <span className="text-red-500 font-semibold"> {error}</span>

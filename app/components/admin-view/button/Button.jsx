@@ -10,15 +10,11 @@ const Button = ({ saveData, loading, update }) => {
     <div className=" mt-5 flex justify-center items-center ">
       <button
         onClick={uploadData}
-        className="bg-orange text-white rounded-md shadow-md py-2 px-12 text-lg   flex justify-center items-center"
+        disabled={loading}
+        className="bg-orange text-white rounded-full shadow-md py-2 px-12 text-lg   flex justify-center gap-x-2 items-center"
       >
-        {loading ? (
-          <HashLoader color="#ffffff" size={25} />
-        ) : update ? (
-          "Update "
-        ) : (
-          "Submit"
-        )}
+        {update ? "Update" : "Save"}{" "}
+        {loading && <HashLoader color="#ffffff" size={20} />}
       </button>
     </div>
   );

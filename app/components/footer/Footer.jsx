@@ -11,7 +11,11 @@ import { Socialicons } from "@/app/constants";
 import Link from "next/link";
 import Social_icons from "../socialIcons/Social_icons";
 
-const Footer = () => {
+const Footer = ({ heroData }) => {
+  const { github, linkedIn, instagram, facebook } = heroData[0];
+
+  const iconsLinks = [github, linkedIn, instagram, facebook];
+
   return (
     <footer className="max-md:pb-16 max-container ">
       <div className="bg-offwhite flex flex-col justify-center items-center gap-y-4 py-10 text-center shadow-md">
@@ -19,19 +23,15 @@ const Footer = () => {
           initial="offscreen"
           whileInView={"onscreen"}
           variants={tittleVariants}
-          className="md:text-2xl text-xl px-7  font-bold text-center max-w-[400px] text-black mx-auto max-container"
+          className="md:text-2xl text-xl px-7  font-bold text-center max-w-[500px] text-black/80 mx-auto max-container"
         >
           Prepared to turn your ideas into reality? I&apos;m here to help.
         </motion.h1>
         <Button label="Contact Me" bg="orange" link="#contact"></Button>
       </div>
-      <div className="bg-black flex flex-col justify-center items-center gap-y-4 py-10 text-center ">
+      <div className="bg-black/80 flex flex-col justify-center items-center gap-y-4 py-10 text-center ">
         <div className="flex gap-x-4 items-center  max-w-[400px]">
-          <Social_icons color="white"></Social_icons>
-
-          {/* {Socialicons?.map((icon, index) => (
-            <span key={index}>{icon}</span>
-          ))} */}
+          <Social_icons color="white" iconsLinks={iconsLinks}></Social_icons>
         </div>
         <motion.label
           initial={{ scale: 0.5 }}

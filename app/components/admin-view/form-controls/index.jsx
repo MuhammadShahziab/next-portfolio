@@ -1,16 +1,23 @@
 "use client";
 import React, { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import Image from "next/image";
-import { ImageUp, Trash } from "lucide-react";
+import { Download, ImageUp, Trash } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { saveAs } from "file-saver";
 
 const FormControls = ({ formDataa, controls, setFormData, categories }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [cvLoading, setCvLoading] = useState(false);
   const [imageloading, setImageLoading] = useState(false);
-  const [cvUrl, setCvUrl] = useState("");
-  console.log(categories, "check categories data 4142");
+  const [cvUrl, setCvUrl] = useState(formDataa?.cv || "");
 
   const uploadImg = async (name, value) => {
     console.log(name, "check name ");
@@ -73,17 +80,23 @@ const FormControls = ({ formDataa, controls, setFormData, categories }) => {
       [name]: "",
     }));
   };
+  const handleDownloadCV = () => {
+    if (cvUrl) {
+      saveAs(cvUrl, "Cv.pdf");
+    }
+  };
+
   return (
-    <div className="grid lg:grid-cols-2 w-full   md:gap-6 gap-2 mx-auto">
+    <div className="grid lg:grid-cols-2 w-full   md:gap-4  mx-auto">
       {controls.map((controlItem, index) => (
         <div className="mb-4  md:mb-0 " key={index}>
           {controlItem.type === "file" ? (
-            <div className="     md:gap-8 gap-5 flex items-center w-full  ">
+            <div className=" md:gap-8  mt-2 gap-5 flex items-center w-full  ">
               {" "}
               <div>
                 <label
                   htmlFor={controlItem.name}
-                  className=" group w-[100px] h-[100px]  md:w-28 md:h-28  font-semibold text-sm md:text-lg gap-2 rounded-md border flex flex-col justify-center items-center text-center hover:bg-orange hover:text-white text-green-300 hover:border-none hover:shadow-md cursor-pointer"
+                  className=" group w-[80px] h-[80px]  md:w-24 md:h-24   text-sm  gap-2 rounded-md border flex flex-col justify-center items-center text-center hover:bg-orange transition-all duration-300 hover:text-white text-green-500 hover:border-none hover:shadow-md cursor-pointer"
                 >
                   Upload <br /> {controlItem.name}
                   <ImageUp size={25} className="group-hover:animate-bounce" />
@@ -120,18 +133,16 @@ const FormControls = ({ formDataa, controls, setFormData, categories }) => {
                     imageloading && "hidden"
                   } flex gap-3 items-center  `}
                 >
-                  <div className="w-[100px] h-[80px] md:w-[120px] md:h-[100px] relative">
-                    <Image
+                  <div className="w-[100px]  rounded-lg h-[80px] md:w-[120px] md:h-[100px] relative ">
+                    <img
                       src={formDataa?.image}
-                      layout="fill"
-                      objectFit="contain"
                       alt="hero_image"
-                      className="border rounded-md"
+                      className="  w-full object-contain h-full"
                     />
                   </div>
                   <button
                     onClick={() => handleRemove(controlItem.name)}
-                    className="border text-red-500 hover:bg-red-500 hover:text-white hover:border-none hover:shadow-lg cursor-pointer w-10  flex justify-center items-center h-10 rounded-full"
+                    className="  text-red-500 bg-red-100 hover:bg-red-200 hover:text-white  cursor-pointer w-10  flex justify-center items-center h-10 rounded-full"
                   >
                     <Trash size={20}></Trash>
                   </button>
@@ -144,52 +155,64 @@ const FormControls = ({ formDataa, controls, setFormData, categories }) => {
                 >
                   <div className=" w-[100px] h-[80px] md:w-[120px] md:h-[100px] relative">
                     <Image
-                      src={formDataa?.cv}
+                      src={`${formDataa?.cv && "/assets/cv.png"}  `}
                       layout="fill"
                       objectFit="contain"
                       alt="CV"
                       className=" border   rounded-md "
                     />
                   </div>
-                  <button
-                    onClick={() => handleRemove(controlItem.name)}
-                    className="border text-red-500 hover:bg-red-500 hover:text-white hover:border-none cursor-pointer w-10  flex justify-center items-center h-10 rounded-full"
-                  >
-                    <Trash size={20}></Trash>
-                  </button>
+                  <div className="flex flex-col gap-y-2">
+                    <button
+                      onClick={() => handleRemove(controlItem.name)}
+                      className=" text-red-500 bg-red-100 hover:bg-red-200 hover:text-white  cursor-pointer w-10  flex justify-center items-center h-10 rounded-full"
+                    >
+                      <Trash size={20}></Trash>
+                    </button>{" "}
+                    <button
+                      onClick={handleDownloadCV}
+                      type="button"
+                      className=" text-green-500 bg-green-100 hover:bg-green-300 hover:text-white  cursor-pointer w-10  flex justify-center items-center h-10 rounded-full"
+                    >
+                      <Download size={20}></Download>
+                    </button>
+                  </div>
                 </div>
               ) : null}
             </div>
           ) : controlItem.lable === "Category" ? (
             <div className="input_div">
               <label className="text-sm md:text-base">
-                {controlItem?.lable}
+                {controlItem?.lable} <span className="text-red-500">*</span>
               </label>
-              <select
-                onChange={(e) =>
+              <Select
+                className="outline-none"
+                onValueChange={(value) =>
                   setFormData({
                     ...formDataa,
-                    [controlItem.name]: e.target.value,
+                    [controlItem.name]: value,
                   })
                 }
-                required
-                className="px-2 py-4 w-full text-start text-md text-softtext border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange dark:focus:border-blue-500 mr-4"
               >
-                <option selected>Select Category</option>
-                {/* Option values for category */}
-                {categories.map((category, index) => (
-                  <>
-                    <option key={index} value={category?.category}>
+                <SelectTrigger className="w-full h-12 mt-1 outline-none flex items-center justify-between px-4">
+                  <SelectValue
+                    className=" outline-none"
+                    placeholder="Select Category"
+                  />
+                </SelectTrigger>
+                <SelectContent className="outline-none">
+                  {categories.map((category, index) => (
+                    <SelectItem key={index} value={category?.category}>
                       {category?.category}
-                    </option>
-                  </>
-                ))}
-              </select>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           ) : (
-            <div className="input_div">
-              <label className="text-sm md:text-base">
-                {controlItem?.lable}
+            <div className="input_div ">
+              <label className="text-sm capitalize md:text-base text-softtext">
+                {controlItem?.lable} <span className="text-red-500"> *</span>
               </label>
               <input
                 required

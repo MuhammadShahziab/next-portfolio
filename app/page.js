@@ -42,7 +42,7 @@ export default async function Home() {
         <Contact contactData={contactData}></Contact>
       </section>
       <section id="contact">
-        <Footer></Footer>
+        <Footer heroData={heroData}></Footer>
       </section>
       <Arrow></Arrow>
     </main>

@@ -2,6 +2,7 @@
 import { addData, getData, updateData } from "@/app/(services)/services";
 import Button from "@/app/components/admin-view/button/Button";
 import FormControls from "@/app/components/admin-view/form-controls";
+import Loading from "@/app/components/admin-view/Loading";
 import { Cake, MailOpen, MapPin, PhoneCall, User } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { HashLoader } from "react-spinners";
@@ -92,10 +93,7 @@ const Contactpage = () => {
   return (
     <div className="padding max-md:mt-16  w-full">
       {pageloading ? (
-        <div className="w-full h-full flex justify-center items-center">
-          {" "}
-          <HashLoader color="#FF715F" />
-        </div>
+        <Loading></Loading>
       ) : (
         <>
           <FormControls

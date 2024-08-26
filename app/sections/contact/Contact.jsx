@@ -12,6 +12,8 @@ import { LuSend } from "react-icons/lu";
 import { HashLoader } from "react-spinners";
 import { MailOpen, Twitter, TwitterIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import { FaGithub } from "react-icons/fa";
+
 import {
   desVariants,
   leftToRight,
@@ -99,7 +101,7 @@ const Contact = ({ contactData }) => {
                 <Card
                   icon={<FaWhatsapp size={30} />}
                   color="text-green-600"
-                  bg="bg-green-200"
+                  bg="bg-green-100"
                   name="whatsapp"
                   contact={phone}
                 />
@@ -111,10 +113,10 @@ const Contact = ({ contactData }) => {
                 className="w-1/2"
               >
                 <Card
-                  icon={<TwitterIcon size={30} />}
-                  color="text-sky-600"
-                  bg="bg-sky-200"
-                  name="twitter"
+                  icon={<Twitter className="text-2xl" />}
+                  color="text-sky-500"
+                  bg="bg-sky-100"
+                  name="Twitter"
                   contact={twitter}
                 />
               </motion.div>
@@ -128,7 +130,7 @@ const Contact = ({ contactData }) => {
               <Card
                 icon={<MailOpen size={30} />}
                 color="text-red-600"
-                bg="bg-red-200"
+                bg="bg-red-100"
                 name="G-Mail"
                 contact={email}
               />
@@ -139,7 +141,7 @@ const Contact = ({ contactData }) => {
           <form
             ref={formRef}
             onSubmit={sendEmail}
-            className="w-full max-w-[850px] h-[400px]"
+            className="w-full max-w-[850px]  h-[400px]"
           >
             <motion.div
               initial="offscreen"
@@ -206,13 +208,13 @@ const Contact = ({ contactData }) => {
             >
               <button
                 type="submit"
-                className="bg-orange text-lg flex justify-center items-center group py-3 w-[150px] shadow-md text-white rounded-lg"
+                className="bg-green-400 text-lg flex justify-center items-center group py-2 w-full mx-2 shadow-md text-white rounded-full"
               >
                 {loading ? (
                   <HashLoader color="#ffffff" size={25} />
                 ) : (
                   <span className="flex justify-center gap-x-4 items-center">
-                    Send
+                    Send Message
                     <span className="group-hover:animate-bounce">
                       <LuSend />
                     </span>

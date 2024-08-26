@@ -7,7 +7,9 @@ import { HashLoader } from "react-spinners";
 import ServiceCard from "@/app/components/serviceCard/Card";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import { CirclePlus, ImageUp, Trash, View } from "lucide-react";
+import { CirclePlus, Eye, ImageUp, Trash, View } from "lucide-react";
+import Loading from "@/app/components/admin-view/Loading";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const serviceFormData = {
   name: "",
@@ -148,59 +150,63 @@ const ServicesPage = () => {
     extractData();
   }, [show]);
   return (
-    <div className="padding max-md:mt-16  w-full">
+    <div className="padding  max-lg:mt-5  w-full">
       {pageLoading ? (
-        <div className="w-full h-full flex justify-center items-center">
-          {" "}
-          <HashLoader color="#FF715F" />
-        </div>
+        <Loading></Loading>
       ) : (
         <>
-          <div className="mb-5">
-            <button
-              onClick={() => setShow((pre) => !pre)}
-              className="flex justify-center text-lg hover:shadow-md gap-3 py-2 px-4 rounded-md bg-green-300 text-white items-center"
-            >
-              {show ? (
-                <>
-                  {" "}
-                  <CirclePlus size={24} /> Add
-                </>
-              ) : (
-                <>
-                  {" "}
-                  <View size={24} /> See
-                </>
-              )}
-            </button>
+          <div className=" relative">
+            {!show ? (
+              <>
+                <IoIosArrowRoundBack
+                  onClick={() => setShow((pre) => !pre)}
+                  className="text-orange absolute -top-6 cursor-pointer -left-10 text-4xl hidden lg:flex"
+                ></IoIosArrowRoundBack>
+              </>
+            ) : (
+              <button
+                onClick={() => setShow((pre) => !pre)}
+                className="flex justify-center text-base mt-3  hover:shadow-md  gap-2 py-2 px-2 md:px-4 rounded-md bg-green-400 text-white items-center"
+              >
+                <CirclePlus className="w-5 h-5 2xl:w-6 2xl:h-6" /> Create
+              </button>
+            )}
           </div>
 
           {!show ? (
-            <div className="mt-6">
-              <div className="mb-4 ">
-                <input
-                  type="text"
-                  value={formData.name}
-                  placeholder="Service Name"
-                  className="focus:border-orange"
-                  name="name"
-                  onChange={(e) => handleNameChange("name", e.target.value)}
-                />
-              </div>
-              <div className="mb-4 ">
-                <input
-                  type="text"
-                  value={formData.description}
-                  placeholder="Description"
-                  name="description"
-                  className="focus:border-orange"
-                  onChange={(e) =>
-                    handleNameChange("description", e.target.value)
-                  }
-                />
+            <div className=" mt-6 lg:mt-9">
+              <div className="grid grid-cols-3 gap-2 lg:gap-3 mb-2 ">
+                <div className="input_field col-span-3 lg:col-span-1">
+                  <label className="text-sm md:text-base text-softtext">
+                    Service Name<span className="text-red-500"> *</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    placeholder="Service Name"
+                    className="focus:border-orange"
+                    name="name"
+                    onChange={(e) => handleNameChange("name", e.target.value)}
+                  />
+                </div>
+                <div className="input_field col-span-3 lg:col-span-2">
+                  <label className="text-sm md:text-base text-softtext">
+                    Description<span className="text-red-500"> *</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.description}
+                    placeholder="Description"
+                    name="description"
+                    className="focus:border-orange"
+                    onChange={(e) =>
+                      handleNameChange("description", e.target.value)
+                    }
+                  />
+                </div>
               </div>
 
-              <div className="md:grid md:grid-cols-2 max-md:mt-6  gap-4">
+              <div className="md:grid md:grid-cols-2 mt-3  gap-4">
                 {formData?.data?.map((item, index) => {
                   return (
                     <div key={index} className="flex max-md:mb-3 gap-2">
@@ -216,7 +222,7 @@ const ServicesPage = () => {
                         }
                       />
                       <span
-                        className="px-2 cursor-pointer py-1 text-xl flex justify-center items-center text-red-600 font-semibold"
+                        className=" cursor-pointer   lg:text-xl flex justify-center items-center text-red-500"
                         onClick={() => handleRemove(index)}
                       >
                         <Trash />
@@ -226,19 +232,19 @@ const ServicesPage = () => {
                 })}
               </div>
 
-              <div className=" w-full flex justify-center md:justify-end items-center mt-4">
+              <div className=" w-full flex justify-end items-center mt-4">
                 <button
                   onClick={handleAddMore}
-                  className="px-6 py-2  mt-4 flex gap-1 justify-center items-center bg-green-300 font-semibold rounded-md text-white"
+                  className="lg:px-4 px-3 py-2  mt-4 flex gap-1 justify-center items-center bg-green-300  rounded-md text-white"
                 >
                   <CirclePlus size={20} /> Add point
                 </button>
               </div>
-              <div className="flex gap-3">
+              <div className="flex gap-3 mt-6">
                 <div>
                   <label
                     htmlFor="upload"
-                    className="group w-[120px] h-[120px] md:w-32 md:h-32 font-semibold text-lg gap-2 rounded-md border flex flex-col justify-center items-center hover:bg-orange hover:text-white text-green-300 hover:border-none hover:shadow-md cursor-pointer"
+                    className="group w-[80px] h-[80px] md:w-24 md:h-24  gap-2 rounded-md border flex flex-col justify-center items-center hover:bg-orange hover:text-white text-green-400 hover:border-none hover:shadow-md cursor-pointer"
                   >
                     Upload{" "}
                     <ImageUp size={25} className="group-hover:animate-bounce" />
@@ -272,12 +278,12 @@ const ServicesPage = () => {
               <span className="text-red-500 rounded-sm bg-red-100 font-semibold w-full text-center mt-4 block">
                 {error}
               </span>
-              <div>
+              <div className="mt-6">
                 <Button saveData={saveData} loading={loading}></Button>
               </div>
             </div>
           ) : (
-            <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-md:mt-16 mt-6 ">
+            <div className="md:grid md:grid-cols-2 lg:grid-cols-3 gap-4  mt-6 ">
               <ServiceCard services={data} action={true} />
             </div>
           )}

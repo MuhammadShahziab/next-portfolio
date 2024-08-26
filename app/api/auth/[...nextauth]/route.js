@@ -5,7 +5,6 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 
 const handler = NextAuth({
-  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -37,6 +36,19 @@ const handler = NextAuth({
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async session({ session }) {
+      const mongoUser = await User.findOne({ email: session?.user.email });
+      console.log(mongoUser, "check session");
+      session.user = {
+        email: mongoUser?.email,
+        profileImage: mongoUser?.Image,
+      };
+
+      return session;
+    },
+  },
 });
 
 export { handler as GET, handler as POST };

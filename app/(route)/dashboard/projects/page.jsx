@@ -9,8 +9,16 @@ import { HashLoader } from "react-spinners";
 import Pagination from "@/app/components/pagination/Pagination";
 import Link from "next/link";
 import DeleteCard from "@/app/components/admin-view/deleteCard/Card";
-import { CirclePlus, Pencil, Trash, View } from "lucide-react";
-
+import { CirclePlus, Pencil, Trash, Eye } from "lucide-react";
+import Loading from "@/app/components/admin-view/Loading";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { IoIosArrowRoundBack } from "react-icons/io";
 const projectFormData = {
   name: "",
   image: "",
@@ -146,32 +154,28 @@ const Projectpage = () => {
   }, [show]);
 
   return (
-    <div className="padding max-md:mt-16  w-full ">
+    <div className="padding max-md:mt-9  w-full ">
       {pageLoading ? (
-        <div className="w-full h-full flex justify-center items-center">
-          {" "}
-          <HashLoader color="#FF715F" />
-        </div>
+        <Loading></Loading>
       ) : (
         <>
-          <button
-            onClick={() => setShow((pre) => !pre)}
-            className="flex justify-center text-base md:text-lg hover:shadow-md gap-2 md:gap-3 py-2 px-2 md:px-4 rounded-md bg-green-300 text-white items-center"
-          >
+          <div className=" relative">
             {!show ? (
               <>
-                {" "}
-                <CirclePlus className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" />{" "}
-                Create
+                <button
+                  onClick={() => setShow((pre) => !pre)}
+                  className="flex justify-center text-base mt-3  hover:shadow-md  gap-2 py-2 px-2 md:px-4 rounded-md bg-green-400 text-white items-center"
+                >
+                  <CirclePlus className="w-5 h-5 2xl:w-6 2xl:h-6" /> Create
+                </button>
               </>
             ) : (
-              <>
-                {" "}
-                <View className="w-5 h-5 md:w-6 md:h-6 2xl:w-8 2xl:h-8" /> See
-                All
-              </>
+              <IoIosArrowRoundBack
+                onClick={() => setShow((pre) => !pre)}
+                className="text-orange absolute -top-6 cursor-pointer -left-10 text-4xl hidden lg:flex"
+              ></IoIosArrowRoundBack>
             )}
-          </button>
+          </div>
 
           <div className="mt-5 w-full">
             {show ? (
@@ -214,27 +218,24 @@ const Projectpage = () => {
                       " "
                     )}
 
-                    <div className="flex justify-between items-center  mt-7 py-3 border-b">
-                      <div className="flex justify-center  items-center relative  md:mb-0 ">
-                        <select
-                          onChange={(e) => setPageSize(e.target.value)}
-                          id="small"
-                          className="p-2 w-full text-center text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange dark:focus:border-blue-500 mr-4"
-                        >
-                          <option value="6" selected>
-                            Per Page
-                          </option>
-                          <option value="3">3</option>
-                          <option value="6">6</option>
-                          <option value="9">9</option>
-                          <option value="12">12</option>
-                        </select>
+                    <div className="flex justify-between items-center  mt-7 py-3 ">
+                      <div>
+                        <Select onValueChange={(value) => setPageSize(value)}>
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="  Per Page" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="6">6</SelectItem>
+                            <SelectItem value="9">9</SelectItem>
+                            <SelectItem value="12">12</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                       <div className="max-md:w-[150px]">
                         <input
                           type="search"
-                          className="relative m-0 block w-full flex-auto rounded border  bg-transparent bg-clip-padding px-3 py-[0.25rem] text-baseb text-black font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3]  focus:shadow-inset focus:outline-none motion-reduce:transition-none "
-                          placeholder="Search"
+                          className="relative m-0 block w-full flex-auto rounded-md border  bg-transparent bg-clip-padding px-3 py-1.5 text-baseb text-black font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3]  focus:shadow-inset focus:outline-none motion-reduce:transition-none "
+                          placeholder="Search  Projects"
                           aria-label="Search"
                           value={search}
                           onChange={(e) => setSeach(e.target.value)}

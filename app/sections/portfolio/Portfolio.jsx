@@ -7,13 +7,13 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import Link from "next/link";
 import Button from "@/app/components/button/Button";
-import Card from "@/app/components/projectCard/Card";
 import { motion } from "framer-motion";
 import {
   desVariants,
   tittleVariants,
 } from "@/app/(services)/animation/animation";
 import { useEffect, useState, useCallback } from "react";
+import ProjectCard from "@/app/components/projectCard/ProjectCard";
 
 const Portfolio = ({ projectsData }) => {
   const [loading, setLoading] = useState(false);
@@ -79,12 +79,16 @@ const Portfolio = ({ projectsData }) => {
           {projectsData.length > 0
             ? projectsData.slice(0, 4).map((project, index) => (
                 <SwiperSlide key={index}>
-                  <Card loading={loading} projects={project} index={index} />
+                  <ProjectCard
+                    loading={loading}
+                    projects={project}
+                    index={index}
+                  />
                 </SwiperSlide>
               ))
             : [1, 2, 3, 4].map((item, index) => (
                 <SwiperSlide key={index}>
-                  <Card loading={true} />
+                  <ProjectCard loading={true} />
                 </SwiperSlide>
               ))}
         </Swiper>

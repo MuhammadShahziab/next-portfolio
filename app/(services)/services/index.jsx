@@ -4,7 +4,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 export async function addData(currentTab, formData) {
   try {
     const { data } = await axios.post(
-      `${apiUrl}/api/${currentTab}/post`,
+      `/api/${currentTab}/post`,
       { formData },
       {
         headers: {
@@ -27,8 +27,7 @@ export async function addData(currentTab, formData) {
 
 export async function getData(currentTab) {
   try {
-    const { data } = await axios.get(`${apiUrl}/api/${currentTab}/get`);
-    console.log(data.data, "check get request");
+    const { data } = await axios.get(`/api/${currentTab}/get`);
     return data.data;
   } catch (error) {
     console.log(error, "get function");
@@ -60,9 +59,7 @@ export async function updateData(currentTab, formData) {
 
 export async function deleteData(currentTab, id) {
   try {
-    const { data } = await axios.delete(
-      `${apiUrl}/api/${currentTab}/delete/${id}`
-    );
+    const { data } = await axios.delete(`/api/${currentTab}/delete/${id}`);
     console.log(data, "services file delete method");
     if (data.success) {
       toast.success(data.message);
@@ -77,7 +74,7 @@ export async function deleteData(currentTab, id) {
 
 export const getSingleData = async (currentTab, id) => {
   try {
-    const { data } = await axios.get(`${apiUrl}/api/${currentTab}/${id}`);
+    const { data } = await axios.get(`/api/${currentTab}/${id}`);
     if (data.success) {
       return data;
     }
