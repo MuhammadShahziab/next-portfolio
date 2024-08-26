@@ -123,8 +123,7 @@ const Hero = ({ heroData }) => {
             variants={imageVariant}
             className=" flex relative justify-center w-[220px] h-[220px] lg:w-[300px] lg:h-[300px] 2xl:w-[380px]  2xl:h-[380px] items-center  flex-wrap"
           >
-            <Link href={`${process.env.NEXT_PUBLIC_API_URL}/dashboard`}>
-              {" "}
+            <Link href={`/dashboard`}>
               <Image
                 src={image}
                 className="border  animate_image"
