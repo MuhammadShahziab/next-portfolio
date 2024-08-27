@@ -122,7 +122,7 @@ const Hero = ({ heroData }) => {
             variants={imageVariant}
             className=" flex relative justify-center w-[220px] h-[220px] lg:w-[300px] lg:h-[300px] 2xl:w-[380px]  2xl:h-[380px] items-center  flex-wrap"
           >
-            <Link href={`/dashboard`}>
+            <Link href={`/login`}>
               <img
                 src={image}
                 className="border w-full h-full  animate_image"
