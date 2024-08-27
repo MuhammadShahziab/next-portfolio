@@ -87,7 +87,7 @@ button :disabled{
   @apply relative;
 }
 .inputLabel {
-  @apply absolute -top-2.5 left-5  text-orange bg-white z-10 transition-all duration-1000;
+  @apply absolute -top-2 left-5  text-orange bg-white z-10 transition-all duration-1000;
 }
 
 .input_div:focus-within .input_lable {

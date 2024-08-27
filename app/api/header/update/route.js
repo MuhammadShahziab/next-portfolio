@@ -45,6 +45,7 @@ export const PUT = async (req, res) => {
       return NextResponse.json({
         success: true,
         message: "Updated!",
+        data: updateData,
       });
     } else {
       return NextResponse.json({

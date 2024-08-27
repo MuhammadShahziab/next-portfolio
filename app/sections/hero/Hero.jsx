@@ -43,7 +43,7 @@ const Hero = ({ heroData }) => {
     <section
       id="home"
       className="w-full relative padding-y max-sm:py-2 padding-x 
-       sm:h-[90vh] bg-offwhite "
+       sm:h-[90vh] "
     >
       <div
         className="flex  2xl:justify-between   max-md:flex-col-reverse max-md:gap-6 max-container
@@ -85,7 +85,7 @@ const Hero = ({ heroData }) => {
             initial="offscreen"
             whileInView={"onscreen"}
             variants={desVariants}
-            className="text-softtext text-[20px] flex-wrap sm:text-md leading-7 md:text-leading-normal sm:max-w-md  "
+            className="text-softtext text-[20px]   sm:text-md leading-7 md:text-leading-normal sm:max-w-md  "
           >
             {description}
           </motion.p>
@@ -93,15 +93,14 @@ const Hero = ({ heroData }) => {
             initial="offscreen"
             whileInView={"onscreen"}
             variants={tittleVariants}
-            className="flex items-center gap-6 mt-4 sm:mt-6"
+            className="flex items-center gap-x-3 lg:gap-6 mt-4 sm:mt-6"
           >
             <Link href="#contact">
               <Button
                 className=" flex items-center gap-x-1"
                 variant="secondary"
-                size="lg"
               >
-                Contact Me <IoIosSend className="text-xl text-green-400" />
+                Contact Me <IoIosSend className="text-xl text-green-400 " />
               </Button>
             </Link>
 
@@ -124,12 +123,10 @@ const Hero = ({ heroData }) => {
             className=" flex relative justify-center w-[220px] h-[220px] lg:w-[300px] lg:h-[300px] 2xl:w-[380px]  2xl:h-[380px] items-center  flex-wrap"
           >
             <Link href={`/dashboard`}>
-              <Image
+              <img
                 src={image}
-                className="border  animate_image"
+                className="border w-full h-full  animate_image"
                 alt="banner"
-                layout="fill"
-                objectFit="contain"
               />
             </Link>
           </motion.div>

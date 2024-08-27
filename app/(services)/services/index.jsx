@@ -26,7 +26,11 @@ export async function addData(currentTab, formData) {
 
 export async function getData(currentTab) {
   try {
-    const { data } = await axios.get(`/api/${currentTab}/get`);
+    const { data } = await axios.get(`/api/${currentTab}/get`, {
+      headers: {
+        "Cache-Control": "no-cache",
+      },
+    });
     return data.data;
   } catch (error) {
     console.log(error, "get function");

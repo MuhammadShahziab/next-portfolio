@@ -5,7 +5,7 @@ import { signIn, useSession } from "next-auth/react";
 import { HashLoader } from "react-spinners";
 import toast, { Toaster } from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
@@ -16,29 +16,33 @@ const Login = () => {
   const [error, setError] = useState(null);
   const router = useRouter();
   const { data, session, status } = useSession();
+  const searchParams = useSearchParams();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
     try {
       setLoading(true);
+
       const res = await signIn("credentials", {
         email,
         password,
-        redirect: false,
+        redirect: false, // Disable automatic redirection by next-auth
       });
+
       if (res.ok) {
-        toast.success("Login");
-        router.push("/dashboard");
-        window.location.reload();
-        setError(null);
-      } else if (res.error) {
-        setError(res.error); // Set the error state
-        toast.error(res.error); // Display error message with toast
+        toast.success("Login successful!");
+
+        // Check if there is a callbackUrl query parameter
+        const searchParams = new URLSearchParams(window.location.search);
+        const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+
+        router.push(callbackUrl); // Redirect to the callbackUrl or default to "/dashboard"
+      } else {
+        toast.error(res.error || "Login failed");
       }
     } catch (error) {
-      setError("Failed to login"); // Set a generic error message
-      toast.error("Failed to login"); // Display generic error message with toast
+      console.error(error);
+      toast.error("An error occurred while logging in");
     } finally {
       setLoading(false);
     }
@@ -112,7 +116,7 @@ const Login = () => {
               </button>
 
               <div className="flex gap-x-3 max-md:mt-6 items-center">
-                <buton className="w-11 h-11 shadow-lg cursor-pointer rounded-full flex justify-center items-center bg-green-400 text-white">
+                <buton className="w-11 h-11 shadow-lg cursor-pointer rounded-full flex justify-center items-center bg-red-400 text-white">
                   <FaGoogle />
                 </buton>
                 <buton className="w-11 h-11 shadow-lg cursor-pointer rounded-full flex justify-center items-center text-2xl bg-black/40 text-white">

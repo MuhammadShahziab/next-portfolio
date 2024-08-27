@@ -141,24 +141,24 @@ const Contact = ({ contactData }) => {
           <form
             ref={formRef}
             onSubmit={sendEmail}
-            className="w-full max-w-[850px]  h-[400px]"
+            className="w-full max-w-[850px]  h-[400px] flex flex-col gap-y-4"
           >
             <motion.div
               initial="offscreen"
               whileInView={"onscreen"}
               variants={tittleVariants}
-              className="relative h-14 px-2 py-1 2xl:h-20 rounded-lg mb-7"
+              className="relative  h-[50px] lg:h-14 px-2 py-1  2xl:h-20 rounded-lg "
             >
               <label className="inputLabel">Name</label>
               <input
-                className=""
+                className="h-full"
                 onChange={(e) => handleInputChange(e.target.value, "name")}
                 type="text"
                 name="name"
                 value={formData.name}
                 placeholder="Insert your Name"
               />
-              <span className="absolute right-6 top-6 text-lg text-softtext">
+              <span className="absolute right-6 top-5 lg:top-6 text-lg text-softtext">
                 <IoMdPerson />
               </span>
             </motion.div>
@@ -166,7 +166,7 @@ const Contact = ({ contactData }) => {
               initial="offscreen"
               whileInView={"onscreen"}
               variants={tittleVariants}
-              className="relative px-2 py-1 h-14 2xl:h-20 rounded-lg mb-7"
+              className="relative px-2 py-1  h-[50px] lg:h-14 2xl:h-20 rounded-lg "
             >
               <label className="inputLabel">Email</label>
               <input
@@ -174,9 +174,10 @@ const Contact = ({ contactData }) => {
                 onChange={(e) => handleInputChange(e.target.value, "email")}
                 name="email"
                 value={formData.email}
+                className="h-full "
                 placeholder="Insert your Email"
               />
-              <span className="absolute right-6 top-6 text-lg text-softtext">
+              <span className="absolute right-6 top-5 lg:top-6 text-lg text-softtext">
                 <SiGmail />
               </span>
             </motion.div>
@@ -184,7 +185,7 @@ const Contact = ({ contactData }) => {
               initial="offscreen"
               whileInView={"onscreen"}
               variants={tittleVariants}
-              className="relative px-2 h-14 rounded-lg mb-7"
+              className="relative px-2 h-14 rounded-lg "
             >
               <label className="inputLabel">Message</label>
               <textarea
@@ -196,7 +197,7 @@ const Contact = ({ contactData }) => {
                 onChange={(e) => handleInputChange(e.target.value, "message")}
                 className="border"
               />
-              <span className="absolute right-6 top-6 text-lg text-softtext">
+              <span className="absolute right-6 lg:top-6 top-9 text-lg text-softtext">
                 <MdMessage />
               </span>
             </motion.div>

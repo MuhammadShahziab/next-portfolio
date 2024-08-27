@@ -88,25 +88,30 @@ const Headerpage = () => {
   const [loading, setLoading] = useState(false);
   const [update, setUpdate] = useState(false);
   const [pageloading, setPageLoading] = useState(false);
+
+  const extractData = async () => {
+    setPageLoading(true);
+    const data = await getData("header");
+    console.log(data, "check header get data ");
+    if (data && data.length) {
+      setHeaderViewFormData(data && data[0]);
+      setUpdate(true);
+    }
+    setPageLoading(false);
+  };
+
   const saveData = async () => {
     setLoading(true);
     const response = update
       ? await updateData("header", headerViewFormData)
       : await addData("header", headerViewFormData);
     setLoading(false);
-    if (response?.success) {
-      extractData();
-    }
-  };
 
-  const extractData = async () => {
-    setPageLoading(true);
-    const data = await getData("header");
-    if (data && data.length) {
-      setHeaderViewFormData(data && data[0]);
+    if (response?.success) {
+      setHeaderViewFormData(response?.data);
       setUpdate(true);
     }
-    setPageLoading(false);
+    extractData();
   };
 
   useEffect(() => {

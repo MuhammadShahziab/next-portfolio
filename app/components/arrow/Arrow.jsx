@@ -28,7 +28,7 @@ const Arrow = () => {
       onClick={scrollToTop}
       className={`${
         showArrow
-          ? " cursor-pointer group text-white hover:bg-orange bg-orange/50  hover:border-none hover:text-white transition  rounded-full w-11 h-11 flex justify-center items-center fixed z-10 md:right-10 right-3 bottom-20 "
+          ? " cursor-pointer group text-white bg-orange   hover:border-none  transition  rounded-full w-11 h-11 flex justify-center items-center fixed z-10 md:right-10 right-3 bottom-20 "
           : "hidden"
       }  `}
     >

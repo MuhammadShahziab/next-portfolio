@@ -9,20 +9,19 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       async authorize(credentials) {
-        if (!credentials.email || !credentials.password) {
-          throw new Error("Please enter your email and password");
-        }
-
         try {
+          if (!credentials.email || !credentials.password) {
+            throw new Error("Please enter your email and password");
+          }
           await ConnectDB();
 
-          const user = await User.findOne({ email: credentials.email });
+          const user = await User.findOne({ email: credentials?.email });
           if (!user) {
-            throw new Error("User dost not exist! ");
+            throw new Error("Email is not exist! ");
           }
 
           const isValid = await bcrypt.compare(
-            credentials.password,
+            credentials?.password,
             user.password
           );
 
@@ -40,7 +39,6 @@ const handler = NextAuth({
   callbacks: {
     async session({ session }) {
       const mongoUser = await User.findOne({ email: session?.user.email });
-      console.log(mongoUser, "check session");
       session.user = {
         email: mongoUser?.email,
         profileImage: mongoUser?.Image,

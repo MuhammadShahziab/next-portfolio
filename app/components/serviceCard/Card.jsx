@@ -131,7 +131,7 @@ const ServiceCard = ({ services, action }) => {
           >
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>
+                <DialogTitle className="text-start">
                   {" "}
                   <motion.h1
                     initial="offscreen"
@@ -162,11 +162,11 @@ const ServiceCard = ({ services, action }) => {
                     initial="offscreen"
                     whileInView={"onscreen"}
                     variants={desVariants}
-                    className="text-softtext font-sans text-base px-4 mt-2 mb-5"
+                    className="text-softtext text-start font-sans text-base px-4 mt-2 mb-5"
                   >
                     {item.description}
                   </motion.p>
-                  <div className="max-h-[250px] overflow-y-scroll p2-3 ">
+                  <div className="max-h-[250px] text-start overflow-y-scroll p2-3 ">
                     <ul>
                       {item?.data?.map((point) => (
                         <motion.li
