@@ -21,9 +21,7 @@ export default async function Home() {
     <main className="relative ">
       <Navbar />
       <section className="">
-        <Hero></Hero>
-
-        {/* <Hero heroData={heroData}></Hero> */}
+        <Hero heroData={heroData}></Hero>
       </section>
       <section className=" relative ">
         <About aboutData={aboutData} contactData={contactData}></About>
