@@ -9,10 +9,7 @@ import Services from "./sections/services/Services";
 import Technology from "./sections/technology/Technology";
 import { fetchPageData } from "./Fetchers";
 import Arrow from "./components/arrow/Arrow";
-// const extractdata = async (page) => {
-//   const { data } = await axios.get(`http://localhost:3000/api/${page}/get`);
-//   return data && data.data;
-// };
+
 export default async function Home() {
   const heroData = await fetchPageData("header");
   const aboutData = await fetchPageData("about");
@@ -24,7 +21,9 @@ export default async function Home() {
     <main className="relative ">
       <Navbar />
       <section className="">
-        <Hero heroData={heroData}></Hero>
+        <Hero></Hero>
+
+        {/* <Hero heroData={heroData}></Hero> */}
       </section>
       <section className=" relative ">
         <About aboutData={aboutData} contactData={contactData}></About>

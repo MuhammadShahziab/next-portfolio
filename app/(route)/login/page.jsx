@@ -48,20 +48,18 @@ const Login = () => {
 
   return (
     <div className="grid md:grid-cols-3 min-h-screen overflow-hidden">
-      <div className="max-md:hidden md:col-span-2">
+      <div className="max-md:hidden md:col-span-2 bg-gray-50">
         <div className="padding-l padding-r h-full hidden md:flex justify-center items-center">
-          <Image
-            src="/assets/login/c.jpg"
-            width={450}
-            height={450}
+          <img
+            src="/assets/login/login1.png"
             alt="login"
-            className="object-contain 2xl:h-[550px] 2xl:w-[550px]"
+            className="object-contain w-[550px] h-[500px] 2xl:h-[550px] 2xl:w-[550px]"
           />
         </div>
       </div>
-      <div className="grid col-span-3 md:col-span-1 bg-orange h-full relative">
+      <div className="grid col-span-3 md:col-span-1 md:bg-orange rounded-tl-3xl rounded-bl-3xl shadow-xl h-full relative">
         <div className="flex flex-col md:justify-center items-center relative">
-          <div className="w-full h-screen md:w-[400px] md:h-[65%] bg-white flex flex-col max-md:pt-28 px-6 py-5 pb-10 md:absolute right-[35%] 2xl:right-[50%] rounded-md shadow-xl">
+          <div className="w-full h-screen md:w-[400px] md:h-[65%] bg-white flex flex-col max-md:pt-28 px-6 py-5 pb-10 md:absolute right-[35%] 2xl:right-[50%] rounded-xl shadow-xl">
             <h1 className="text-3xl mb-0 leading-7 max-md:flex-col text-center mt-0 md:mt-4 lg:mt-0 font-semibold text-orange">
               Login <br />
             </h1>

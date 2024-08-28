@@ -7,7 +7,6 @@ import Typewriter from "typewriter-effect";
 import Social_icons from "@/app/components/socialIcons/Social_icons";
 import { Button } from "@/components/ui/button";
 
-import Image from "next/image";
 import {
   desVariants,
   imageVariant,
@@ -16,22 +15,50 @@ import {
 } from "@/app/(services)/animation/animation";
 import Link from "next/link";
 import { saveAs } from "file-saver";
+import { getData } from "@/app/(services)/services";
+import { useEffect, useState } from "react";
+import Loading from "@/app/components/admin-view/Loading";
 
-const Hero = ({ heroData }) => {
-  const {
-    name,
-    animatedText,
-    description,
-    subHeading,
-    image,
-    cv,
-    github,
-    linkedIn,
-    instagram,
-    facebook,
-  } = heroData[0];
-  const animate = animatedText.split(",");
-  const iconsLinks = [github, linkedIn, instagram, facebook];
+const Hero = () => {
+  // const {
+  //   name,
+  //   animatedText,
+  //   description,
+  //   subHeading,
+  //   image,
+  //   cv,
+  //   github,
+  //   linkedIn,
+  //   instagram,
+  //   facebook,
+  // } = heroData[0];
+  const [hero, setHero] = useState([]);
+  const [loading, setLoading] = useState(false);
+  console.log(hero, "chek herder");
+
+  const getHeroData = async () => {
+    try {
+      setLoading(true);
+      const res = await getData("header");
+      setHero(res[0], "chek header udpaet");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getHeroData();
+  }, []);
+
+  const animate = hero?.animatedText?.split(",");
+  const iconsLinks = [
+    hero?.github,
+    hero?.linkedIn,
+    hero?.instagram,
+    hero?.facebook,
+  ];
 
   const handleDownloadCV = () => {
     if (cv) {
@@ -42,7 +69,7 @@ const Hero = ({ heroData }) => {
   return (
     <section
       id="home"
-      className="w-full relative padding-y max-sm:py-2 padding-x 
+      className="w-full relative padding-y max-sm:py-2 padding-x
        sm:h-[90vh] "
     >
       <div
@@ -56,7 +83,7 @@ const Hero = ({ heroData }) => {
             variants={tagVariants}
             className=" text-sm mb-0  text-capitalize tracking-[4px] font-semibold text-orange"
           >
-            {subHeading}
+            {hero?.subHeading}
           </motion.div>
           <motion.h1
             initial="offscreen"
@@ -64,7 +91,8 @@ const Hero = ({ heroData }) => {
             variants={tittleVariants}
             className="max-sm:text-[65px] mb-0  mt-1 font-bold flex-wrap text-black max-sm:leading-[72px] text-[54px]  "
           >
-            Hi, I&apos;m <span className="text-orange capitalize">{name}</span>
+            Hi, I&apos;m{" "}
+            <span className="text-orange capitalize">{hero?.name}</span>
           </motion.h1>
           <motion.h3
             initial="offscreen"
@@ -87,7 +115,7 @@ const Hero = ({ heroData }) => {
             variants={desVariants}
             className="text-softtext text-[20px]   sm:text-md leading-7 md:text-leading-normal sm:max-w-md  "
           >
-            {description}
+            {hero?.description}
           </motion.p>
           <motion.div
             initial="offscreen"
@@ -124,7 +152,7 @@ const Hero = ({ heroData }) => {
           >
             <Link href={`/login`}>
               <img
-                src={image}
+                src={hero?.image}
                 className="border w-full h-full  animate_image"
                 alt="banner"
               />
