@@ -67,25 +67,28 @@ const Portfolio = ({ projectsData }) => {
         <Swiper
           className="h-[440px]" // Add custom class here
           modules={[Pagination]}
-          spaceBetween={20}
+          spaceBetween={40}
           slidesPerView={1}
           breakpoints={{
             640: {
-              slidesPerView: 3,
+              slidesPerView: 2,
             },
           }}
           pagination={{ clickable: true }}
         >
           {projectsData.length > 0
-            ? projectsData.slice(0, 4).map((project, index) => (
-                <SwiperSlide key={index}>
-                  <ProjectCard
-                    loading={loading}
-                    projects={project}
-                    index={index}
-                  />
-                </SwiperSlide>
-              ))
+            ? [...projectsData]
+                .reverse()
+                .slice(0, 4)
+                .map((project, index) => (
+                  <SwiperSlide key={index}>
+                    <ProjectCard
+                      loading={loading}
+                      projects={project}
+                      index={index}
+                    />
+                  </SwiperSlide>
+                ))
             : [1, 2, 3, 4].map((item, index) => (
                 <SwiperSlide key={index}>
                   <ProjectCard loading={true} />

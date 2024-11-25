@@ -74,7 +74,7 @@ const AddCategorypage = () => {
 
             <button
               onClick={handleSubmit}
-              className="bg-green-400  text-white border-none outline-none px-4 md:px-8 mb-1 py-2 rounded-full"
+              className="bg-green-400 hover:bg-green-500 text-white border-none outline-none px-4 md:px-8 mb-1 py-2 rounded-lg flex items-center gap-2 font-semibold "
             >
               Create
               {loading && <ClipLoader color="#ffffff" size={20} />}

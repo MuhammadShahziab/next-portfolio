@@ -114,7 +114,8 @@ const About = ({ aboutData, contactData }) => {
                       variants={tittleVariants}
                       className="font-bold  mb-3 text-black   text-2xl 2xl:text-3xl"
                     >
-                      Unmatched Service Quality for Over 10 Years{" "}
+                      Delivering Exceptional Service Quality with 2 Years of
+                      Expertise{" "}
                     </motion.h1>
                     <motion.p
                       initial="offscreen"
@@ -122,9 +123,9 @@ const About = ({ aboutData, contactData }) => {
                       variants={desVariants}
                       className="text-softtext  max-w-lg  2xl:max-w-xl 2xl:leading-7  leading-2 text-md 2xl:text-lg"
                     >
-                      I specialize in crafting intuitive websites with
-                      cutting-edge technology, delivering dynamic and engaging
-                      user experience.
+                      I specialize in creating intuitive, high-performance
+                      websites using the latest technologies, ensuring a dynamic
+                      and engaging user experience every time.
                     </motion.p>
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">

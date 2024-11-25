@@ -34,18 +34,20 @@ const Navbar = () => {
   return (
     <header className="padding-x z-20   w-full lg:fixed lg:top-0 lg:left-0 fixed bottom-0 h-14  left-0   bg-white/10 backdrop-blur-lg backdrop-saturate-150">
       <nav className="flex justify-between  items-center h-full z-10 max-container ">
-        <motion.h2
-          initial="offscreen"
-          whileInView={"onscreen"}
-          variants={leftToRight}
-          className="font-semibold text-[16px] relative text-orange"
-        >
-          <span className="md:text-[35px] text-[20px] bg-green-400 rounded-2xl h-6 px-1 text-white font-semibold">
-            P
-          </span>
-          <span className="max-md:text-sm md:text-[23px] ml-1">ortfolio</span>
-          <span className="h-2 w-2 rounded-full bg-green-400 absolute right-[-12px] animate-pulse top-1/2 lg:mt-1 "></span>
-        </motion.h2>
+        <Link href={"/"}>
+          <motion.h2
+            initial="offscreen"
+            whileInView={"onscreen"}
+            variants={leftToRight}
+            className="font-semibold text-[16px] relative text-orange"
+          >
+            <span className="md:text-[35px] text-[20px] bg-green-400 rounded-2xl h-6 px-1 text-white font-semibold">
+              P
+            </span>
+            <span className="max-md:text-sm md:text-[23px] ml-1">ortfolio</span>
+            <span className="h-2 w-2 rounded-full bg-green-400 absolute right-[-12px] animate-pulse top-1/2 lg:mt-1 "></span>
+          </motion.h2>
+        </Link>
 
         <div
           className={`max-lg:bg-white z-50 max-lg:shadow-3xl max-lg:fixed max-lg:bottom-0 ${

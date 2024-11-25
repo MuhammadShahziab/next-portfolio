@@ -49,23 +49,21 @@ const ProjectCard = ({ projects, loading, index }) => {
           onClick={() => setOpen(true)}
         >
           <Card className="z-10 group w-full relative">
-            <CardTitle>
-              <Badge
-                variant="outline"
-                className="absolute z-10 bg-green-400/80 border-none capitalize text-sm text-white top-2 left-2"
-              >
-                {projects?.category}
-              </Badge>
-            </CardTitle>
-            <CardContent className="px-0 rounded-md">
-              <div className="relative flex justify-center xl:bg-[110%] bg-offwhite items-end md:items-center w-full h-[250px] md:h-[270px] mb-4">
-                <Image
+            <CardContent className="px-0 pt-0 relative  ">
+              <div className="relative w-[100%] abosolute top-0 rounded-b-2xl  mb-4 mx-auto h-[200px]">
+                <img
                   src={projects.image}
-                  width={250}
-                  height={230}
                   alt={projects.name}
-                  className="shadow-2xl object-contain h-[215px] md:h-[230px] absolute bottom-0"
+                  className=" rounded-tl-lg w-full h-full"
                 />
+              </div>
+              <div className="flex justify-start px-3 items-center">
+                <Badge
+                  variant="outline"
+                  className=" z-10 bg-green-400/80 border-none capitalize text-sm text-white "
+                >
+                  {projects?.category}
+                </Badge>
               </div>
               <div className="flex justify-between items-center pt-2 px-4">
                 <h1 className="font-semibold capitalize text-black">
@@ -82,15 +80,15 @@ const ProjectCard = ({ projects, loading, index }) => {
       )}
 
       <Dialog open={open} onOpenChange={() => setOpen(false)}>
-        <DialogContent className="w-[92%] px-6 lg:max-w-[60%] lg:flex lg:flex-row flex-col space-y-4 lg:space-y-0 lg:space-x-4">
+        <DialogContent className="w-[92%] lg:min-h-[350px] px-6 lg:max-w-[60%] lg:flex lg:flex-row flex-col space-y-4 lg:space-y-0 lg:space-x-4">
           {/* Left Side: Project Image */}
-          <div className="lg:w-1/2 w-full ">
+          <div className=" lg:w-1/2 w-full ">
             <Image
               src={projects?.image}
               alt={projects?.name}
               width={500}
               height={400}
-              className="rounded-md object-contain w-full h-full"
+              className="rounded-md object-contain "
             />
           </div>
 
@@ -103,19 +101,28 @@ const ProjectCard = ({ projects, loading, index }) => {
                 </h2>
               </DialogHeader>
               <DialogDescription>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm mt-2 text-muted-foreground">
                   {projects?.description}
                 </p>
               </DialogDescription>
               <div className="flex  space-x-4 mt-4 lg:mt-6">
-                <button className="flex hover:bg-gray-50 hover:shadow-sm transition-all duration-400 items-center border rounded-full outline-none px-4 py-1 space-x-2">
+                <a
+                  href={projects?.github}
+                  target="_blank"
+                  className="flex hover:bg-gray-50 hover:shadow-sm transition-all duration-400 items-center border rounded-full outline-none px-4 py-1 space-x-2"
+                >
                   <FaGithub className="text-lg" />
                   <span>GitHub</span>
-                </button>
-                <button className="flex hover:bg-gray-100 hover:shadow-sm transition-all duration-400 items-center border rounded-full outline-none px-4 py-1 space-x-2">
-                  <MdOutlineOpenInNew className="text-lg"></MdOutlineOpenInNew>
+                </a>
+                <a
+                  href={projects?.link} // Replace with your actual preview URL
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex hover:bg-gray-100 hover:shadow-sm transition-all duration-400 items-center border rounded-full outline-none px-4 py-1 space-x-2"
+                >
+                  <MdOutlineOpenInNew className="text-lg" />
                   <span>Preview</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>

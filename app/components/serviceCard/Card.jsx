@@ -59,7 +59,7 @@ const ServiceCard = ({ services, action }) => {
                 width={55}
                 height={55}
                 alt="icon"
-                className="rounded-full object-cover"
+                className="rounded-full object-cover w-full h-full"
               />
             </motion.div>
           </div>
@@ -154,7 +154,7 @@ const ServiceCard = ({ services, action }) => {
                       width={90}
                       height={90}
                       alt="service_image"
-                      className="object-contain"
+                      className="object-contain rounded-full"
                     />
                   </motion.div>
 

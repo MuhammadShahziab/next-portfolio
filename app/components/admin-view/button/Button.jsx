@@ -11,7 +11,7 @@ const Button = ({ saveData, loading, update }) => {
       <button
         onClick={uploadData}
         disabled={loading}
-        className="bg-orange text-white rounded-full shadow-md py-2 px-12 text-lg   flex justify-center gap-x-2 items-center"
+        className="bg-orange text-white rounded-lg shadow-md py-2 px-12 text-lg   flex justify-center gap-x-2 items-center"
       >
         {update ? "Update" : "Save"}{" "}
         {loading && <HashLoader color="#ffffff" size={20} />}

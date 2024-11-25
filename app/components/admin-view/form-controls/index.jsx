@@ -12,7 +12,13 @@ import {
 } from "@/components/ui/select";
 import { saveAs } from "file-saver";
 
-const FormControls = ({ formDataa, controls, setFormData, categories }) => {
+const FormControls = ({
+  formDataa,
+  controls,
+  setFormData,
+  categories,
+  isEdit,
+}) => {
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const [cvLoading, setCvLoading] = useState(false);
@@ -197,11 +203,15 @@ const FormControls = ({ formDataa, controls, setFormData, categories }) => {
                 <SelectTrigger className="w-full h-12 mt-1 outline-none flex items-center justify-between px-4">
                   <SelectValue
                     className=" outline-none"
-                    placeholder="Select Category"
+                    placeholder={
+                      isEdit && formDataa[controlItem.name] // Show old category if editing
+                        ? formDataa[controlItem.name] // Display the old category value
+                        : "Select Category" // Default placeholder for Add Page
+                    }
                   />
                 </SelectTrigger>
-                <SelectContent className="outline-none">
-                  {categories.map((category, index) => (
+                <SelectContent className="outline-none capitalize">
+                  {categories?.map((category, index) => (
                     <SelectItem key={index} value={category?.category}>
                       {category?.category}
                     </SelectItem>
