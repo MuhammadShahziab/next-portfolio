@@ -14,7 +14,6 @@ const CategoryList = ({ open, setOpen }) => {
   const path =
     router.split("/")[2] || router.split("/")[2] || router.split("/")[3];
 
-  console.log(fullPath, "check fullPath path");
   const handlecloseSidebar = () => {
     if (window.innerWidth <= 768) {
       setOpen(false);

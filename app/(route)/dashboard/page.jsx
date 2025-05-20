@@ -7,11 +7,9 @@ const AdminPage = () => {
   const [projects, setProjects] = useState([]);
 
   const { data: session } = useSession();
-  console.log(session, "check session");
   const extractAllData = async () => {
     try {
       const data = await getData("projects");
-      console.log(data, "check data");
       if (data) {
         setProjects(data);
       }

@@ -62,14 +62,12 @@ const Contactpage = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
-  console.log(contactViewFormData, "check form data ");
   const saveData = async () => {
     try {
       setLoading(true);
       update
         ? await updateData("contact", contactViewFormData)
         : await addData("contact", contactViewFormData);
-      console.log(res, "contact res ");
     } catch (error) {
     } finally {
       setLoading(false);

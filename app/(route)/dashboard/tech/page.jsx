@@ -95,8 +95,6 @@ const TechPage = () => {
         const fetchedData = response[0]?.data || [];
 
         const fetchId = response[0]._id || null;
-        console.log(fetchId, "check response id 1122");
-        console.log(fetchedData, "check response data 1122");
 
         setFormdata({ data: fetchedData, id: fetchId }); // Set the fetched data into state
         setUpdate(true);

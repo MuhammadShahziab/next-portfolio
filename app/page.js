@@ -32,7 +32,7 @@ export default async function Home() {
       <section className="  ">
         <Services servicesData={servicesData}></Services>
       </section>
-      <section className="padding-t padding-b  " id="portfolio">
+      <section className="padding-t padding-b   " id="portfolio">
         <Portfolio projectsData={projectsData}></Portfolio>
       </section>
       <section id="contact">

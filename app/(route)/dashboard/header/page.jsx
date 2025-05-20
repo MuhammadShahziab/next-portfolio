@@ -92,7 +92,6 @@ const Headerpage = () => {
   const extractData = async () => {
     setPageLoading(true);
     const data = await getData("header");
-    console.log(data, "check header get data ");
     if (data && data.length) {
       setHeaderViewFormData(data && data[0]);
       setUpdate(true);
