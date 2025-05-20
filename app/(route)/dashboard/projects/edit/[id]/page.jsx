@@ -72,7 +72,6 @@ const EditPage = ({ params }) => {
       setPageLoading(true);
       const { data } = await getSingleData("projects", id);
       const getCategories = await getData("category");
-      console.log(getCategories, "check categories");
       if (data || getCategories) {
         setEditProjectViewFormData(data);
         setCategories(getCategories);

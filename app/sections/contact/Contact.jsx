@@ -31,7 +31,6 @@ const Contact = ({ contactData }) => {
     message: "",
   });
   const { twitter, phone, email,linkedIn } = contactData[0];
-console.log(contactData);
   const handleInputChange = (value, name) => {
     setFormData((prev) => ({
       ...prev,

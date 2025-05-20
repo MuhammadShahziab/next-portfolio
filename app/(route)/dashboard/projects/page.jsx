@@ -82,7 +82,6 @@ const Projectpage = () => {
   const [search, setSeach] = useState("");
   const [pageSize, setPageSize] = useState("6");
   const [categories, setCategories] = useState();
-  console.log(categories, "check category 323");
   const saveData = async () => {
     const { name, category, description, image } = projectViewFormData;
     if (
