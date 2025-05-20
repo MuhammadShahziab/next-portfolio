@@ -41,7 +41,7 @@ const Hero = ({ heroData }) => {
   return (
     <section
       id="home"
-      className="w-full relative padding-y max-sm:py-2 padding-x 
+      className="w-full relative padding-y max-sm:py-2 padding-x  bg-offwhite
        sm:h-[90vh] "
     >
       <div

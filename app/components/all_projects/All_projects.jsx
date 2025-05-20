@@ -16,7 +16,7 @@ const All_projects = ({ projectData }) => {
   const [pageSize, setPageSize] = useState("6");
   const [search, setSeach] = useState("");
 
-  const filteredProjects = projectData.filter((project) => {
+  const filteredProjects = [...projectData].reverse().filter((project) => {
     // Filter based on category
     const categoryMatch = category === "All" || project.category === category;
 

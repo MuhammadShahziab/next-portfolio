@@ -36,7 +36,7 @@ const Portfolio = ({ projectsData }) => {
       className="max-container relative padding-l max-md:padding-r"
       id="portfolio"
     >
-      <div className="max-w-[300px] mx-auto xl:mx-0 text-center xl:text-left mb-12 xl:h-[350px] flex flex-col gap-y-3 justify-center items-center xl:items-start">
+      <div className="max-w-[300px] mx-auto pr-8 xl:mx-0 text-center xl:text-left mb-12 xl:h-[350px] flex flex-col gap-y-3 justify-center items-center xl:items-start">
         <motion.h2
           initial="offscreen"
           whileInView={"onscreen"}

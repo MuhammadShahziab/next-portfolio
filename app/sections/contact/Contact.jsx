@@ -30,8 +30,8 @@ const Contact = ({ contactData }) => {
     email: "",
     message: "",
   });
-  const { twitter, phone, email } = contactData[0];
-
+  const { twitter, phone, email,linkedIn } = contactData[0];
+console.log(contactData);
   const handleInputChange = (value, name) => {
     setFormData((prev) => ({
       ...prev,
@@ -67,7 +67,7 @@ const Contact = ({ contactData }) => {
   };
 
   return (
-    <section className="padding max-container h-100vh overflow-x-hidden">
+    <section className="padding-x padding-t max-container h-100vh overflow-x-hidden">
       <div className="flex flex-col justify-center items-center relative">
         <motion.h1
           initial="offscreen"
