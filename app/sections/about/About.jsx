@@ -37,8 +37,8 @@ const About = ({ aboutData, contactData }) => {
   };
 
   return (
-    <section className="h-100vh padding  max-container" id="about">
-      <div className="flex flex-col justify-center items-center  relative">
+    <section className="h-100vh padding   max-container" id="about">
+      <div className="flex flex-col justify-center items-center 2xl:py-8   relative">
         <motion.h1
           initial="offscreen"
           whileInView={"onscreen"}
@@ -63,7 +63,7 @@ const About = ({ aboutData, contactData }) => {
             initial="offscreen"
             whileInView={"onscreen"}
             variants={imageVariant}
-            className="w-[330px] h-[330px]  relative "
+            className="w-[290px] h-[290px] xl:w-[330px] xl:h-[330px]  relative "
           >
             <Image
               src={"/assets/hero/developer.jpeg"}

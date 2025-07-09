@@ -66,7 +66,7 @@ const Contact = ({ contactData }) => {
   };
 
   return (
-    <section className="padding-x padding-t max-container h-100vh overflow-x-hidden">
+    <section className="padding-x padding-t  max-container h-100vh overflow-x-hidden">
       <div className="flex flex-col justify-center items-center relative">
         <motion.h1
           initial="offscreen"
@@ -87,10 +87,10 @@ const Contact = ({ contactData }) => {
         </motion.h5>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-x-5 mt-11 py-3">
+      <div className="flex flex-col md:flex-row  2xl:mb-16 gap-x-5 mt-11 py-3">
         <div className="flex-1 flex justify-center md:justify-start">
           <div className="flex flex-col gap-y-2 md:w-[300px]">
-            <div className="flex pr-2 gap-2">
+            <div className="flex pr-1  gap-2">
               <motion.div
                 initial="offscreen"
                 whileInView={"onscreen"}
@@ -124,7 +124,7 @@ const Contact = ({ contactData }) => {
               initial="offscreen"
               whileInView={"onscreen"}
               variants={tittleVariants}
-              className="w-full px-1 md:px-0 "
+              className="w-full  pr-1 md:pr-0 "
             >
               <Card
                 icon={<MailOpen size={30} />}
