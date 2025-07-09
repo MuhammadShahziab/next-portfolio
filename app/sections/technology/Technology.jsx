@@ -10,7 +10,7 @@ const Technology = ({ techData }) => {
   return (
     <section
       id="technologies"
-      className=" padding  max-container a h-100vh overflow-x-hidden"
+      className=" padding  max-container  h-100vh overflow-x-hidden"
     >
       <div className="flex flex-col justify-center items-center   relative">
         <motion.h1

@@ -33,7 +33,7 @@ const Portfolio = ({ projectsData }) => {
 
   return (
     <section
-      className="max-container relative  max-lg:px-14 max-2xl:padding-l  "
+      className="max-container relative  max-xl:px-14 max-2xl:padding-l  "
       id="portfolio"
     >
       <div className="max-w-[300px] 2xl:max-w-[400px]  mx-auto pr-8 xl:mx-0 text-center xl:text-left mb-12 xl:h-[350px] flex flex-col gap-y-3 justify-center items-center xl:items-start">
