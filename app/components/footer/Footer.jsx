@@ -17,7 +17,7 @@ const Footer = ({ heroData }) => {
   const iconsLinks = [github, linkedIn, instagram, facebook];
 
   return (
-    <footer className="max-md:pb-16 max-container ">
+    <footer className="max-md:pb-16 max-xl:max-container ">
       <div className="bg-offwhite flex flex-col justify-center items-center gap-y-4 py-10 text-center shadow-md">
         <motion.h1
           initial="offscreen"

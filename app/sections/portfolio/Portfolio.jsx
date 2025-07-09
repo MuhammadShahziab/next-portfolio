@@ -33,10 +33,10 @@ const Portfolio = ({ projectsData }) => {
 
   return (
     <section
-      className="max-container relative padding-l max-md:padding-r"
+      className="max-container relative  max-xl:px-14 max-2xl:padding-l  "
       id="portfolio"
     >
-      <div className="max-w-[300px] mx-auto pr-8 xl:mx-0 text-center xl:text-left mb-12 xl:h-[350px] flex flex-col gap-y-3 justify-center items-center xl:items-start">
+      <div className="max-w-[300px] 2xl:max-w-[400px]  mx-auto pr-8 xl:mx-0 text-center xl:text-left mb-12 xl:h-[350px] flex flex-col gap-y-3 justify-center items-center xl:items-start">
         <motion.h2
           initial="offscreen"
           whileInView={"onscreen"}
@@ -63,15 +63,23 @@ const Portfolio = ({ projectsData }) => {
           </Link>
         </motion.div>
       </div>
-      <div className="xl:max-w-[850px] xl:absolute top-0 right-10">
+      <div className="xl:max-w-[850px]   2xl:max-w-[1000px] xl:absolute top-0 right-10">
         <Swiper
           className="h-[440px]" // Add custom class here
           modules={[Pagination]}
-          spaceBetween={40}
+          spaceBetween={30}
           slidesPerView={1}
           breakpoints={{
             640: {
-              slidesPerView: 2,
+              slidesPerView: 3,
+            },
+            1536: {
+              // 2xl
+              slidesPerView: 3,
+            },
+            1920: {
+              // 3xl
+              slidesPerView: 3,
             },
           }}
           pagination={{ clickable: true }}
@@ -81,10 +89,10 @@ const Portfolio = ({ projectsData }) => {
                 .reverse()
                 .slice(0, 4)
                 .map((project, index) => (
-                  <SwiperSlide key={index}>
+                  <SwiperSlide className="mr-0" key={index}>
                     <ProjectCard
                       loading={loading}
-                      projects={project}
+                      project={project}
                       index={index}
                     />
                   </SwiperSlide>

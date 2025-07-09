@@ -104,19 +104,21 @@ button :disabled{
   @apply border-orange; /* Change border color when .mainInput is focused */
 }
 
-@layer components {
+
+
+/* @layer components {
   .max-container {
     max-width: 1440px;
     margin: 0 auto;
   }
-}
+} */
 
 @layer utilities {
   .padding {
-    @apply sm:px-36 px-8 sm:py-24 py-12;
+    @apply md:px-16 lg:px-24 xl:px-36  2xl:px-4 px-8 sm:py-24 py-12;
   }
   .padding-x {
-    @apply sm:px-24 px-8;
+    @apply sm:px-16 px-8;
   }
   .padding-y {
     @apply sm:py-24 py-12;
@@ -134,6 +136,9 @@ button :disabled{
   .padding-b {
     @apply sm:pb-24 pb-12;
   }
+  .max-container {
+  @apply max-w-7xl 2xl:max-w-screen-2xl mx-auto ;
+}
   .info-text {
     @apply font-montserrat text-slate-gray text-lg leading-7;
   }

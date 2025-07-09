@@ -16,7 +16,7 @@ import {
   DialogHeader,
 } from "@/components/ui/dialog";
 
-const ProjectCard = ({ projects, loading, index }) => {
+const ProjectCard = ({ project, loading, index }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -52,9 +52,9 @@ const ProjectCard = ({ projects, loading, index }) => {
             <CardContent className="px-0 pt-0 relative  ">
               <div className="relative w-[100%] abosolute top-0 rounded-b-2xl  mb-4 mx-auto h-[200px]">
                 <img
-                  src={projects.image}
-                  alt={projects.name}
-                  className=" rounded-tl-lg w-full h-full"
+                  src={project?.image}
+                  alt={project?.name}
+                  className=" rounded-tl-lg w-full object-fit h-full"
                 />
               </div>
               <div className="flex justify-start px-3 items-center">
@@ -62,12 +62,12 @@ const ProjectCard = ({ projects, loading, index }) => {
                   variant="outline"
                   className=" z-10 bg-green-400/80 border-none capitalize text-sm text-white "
                 >
-                  {projects?.category}
+                  {project?.category}
                 </Badge>
               </div>
               <div className="flex justify-between items-center pt-2 px-4">
-                <h1 className="font-semibold capitalize text-black">
-                  {projects.name}
+                <h1 className="font-semibold text-sm capitalize text-black">
+                  {project?.name}
                 </h1>
                 <MdOutlineOpenInNew
                   onClick={() => setOpen(true)}
@@ -84,8 +84,8 @@ const ProjectCard = ({ projects, loading, index }) => {
           {/* Left Side: Project Image */}
           <div className=" lg:w-1/2 w-full ">
             <Image
-              src={projects?.image}
-              alt={projects?.name}
+              src={project?.image}
+              alt={project?.name}
               width={500}
               height={400}
               className="rounded-md object-contain "
@@ -97,17 +97,17 @@ const ProjectCard = ({ projects, loading, index }) => {
             <div>
               <DialogHeader>
                 <h2 className="text-2xl font-semibold text-start capitalize">
-                  {projects.name}
+                  {project?.name}
                 </h2>
               </DialogHeader>
               <DialogDescription>
                 <p className="text-sm mt-2 text-muted-foreground">
-                  {projects?.description}
+                  {project?.description}
                 </p>
               </DialogDescription>
               <div className="flex  space-x-4 mt-4 lg:mt-6">
                 <a
-                  href={projects?.github}
+                  href={project?.github}
                   target="_blank"
                   className="flex hover:bg-gray-50 hover:shadow-sm transition-all duration-400 items-center border rounded-full outline-none px-4 py-1 space-x-2"
                 >
@@ -115,7 +115,7 @@ const ProjectCard = ({ projects, loading, index }) => {
                   <span>GitHub</span>
                 </a>
                 <a
-                  href={projects?.link} // Replace with your actual preview URL
+                  href={project?.link} // Replace with your actual preview URL
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex hover:bg-gray-100 hover:shadow-sm transition-all duration-400 items-center border rounded-full outline-none px-4 py-1 space-x-2"

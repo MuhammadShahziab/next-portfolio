@@ -138,7 +138,7 @@ const All_projects = ({ projectData }) => {
               currentData?.map((project, index) => {
                 return (
                   <ProjectCard
-                    projects={project}
+                    project={project}
                     loading={false}
                     key={index}
                   ></ProjectCard>
